@@ -1,0 +1,11 @@
+# AC-2 negative fixture: the budget preset with E sabotaged to B's exact model.
+# validate-config.sh MUST reject this with exit 1 (independence: E == B).
+omh: v1
+project: fixture-e-b
+preset: budget
+roles:
+  A: { provider: zai-anthropic, model: glm-5.3 }
+  B: { provider: zai-anthropic, model: glm-5.3-flash }
+  C: { provider: minimax-anthropic, model: MiniMax-M3.1-Flash }
+  D: { provider: mimo, model: mimo-v2.6-flash }
+  E: { provider: zai-anthropic, model: glm-5.3-flash }
