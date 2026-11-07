@@ -38,8 +38,8 @@ Keep this file short and binding. Depth lives in the documents below — read th
 ## Current state
 
 - **OMH-0 CLOSED (7 Nov 2026)** — rewapp v0.1 shipped (spec Shipped; AC-6/AC-7 manual readings
-  with Harry). Restructured into the family layout by OMH-1 → rewapp v0.1.1.
-- **OMH-1 (harness family) — building 7 Nov 2026**: git mv done, schema v2 live, routers updated;
-  dry-run evidence and close next.
-- Next after close: **OMH-2 — first real adoption** (full loop incl. C and E on a second real
-  repo). `omh upgrade`/re-sync stays deferred.
+  with Harry).
+- **OMH-1 CLOSED (7 Nov 2026)** — family restructure shipped: `harnesses/rewapp/` v0.1.1 +
+  shared root law, flat vendoring proven by dry-run; AC-6 manual read with Harry.
+- Next: **OMH-2 — first real adoption** (full loop incl. C and E on a second real repo; spec at
+  P1 entry). `omh upgrade`/re-sync stays deferred.
