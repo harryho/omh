@@ -1,5 +1,6 @@
-# omh.config.yaml — project harness configuration (schema v1)
-omh: v1
+# omh.config.yaml — project harness configuration (schema v2)
+omh: v2
+harness: rewapp               # which harness runs this project (family index in README)
 project: <name>
 source_contract:
   kind: legacy-app            # legacy-app | existing-tests | api-spec | greenfield
@@ -19,13 +20,13 @@ escalations:                  # hard stops in every mode; edit only with a dated
   - unexplained-tree
   - port-claim-not-in-inventory
   - major-or-blocker-deviation
-preset: max-diversity         # max-diversity | balanced | budget (MODELS.md)
+preset: max-diversity         # model preset: max-diversity | balanced | budget (harness MODELS.md)
 roles:                        # one line per role — validate-config.sh parses exactly this shape
   A: { provider: zai-anthropic, model: glm-5.3 }
   B: { provider: zai-anthropic, model: glm-5.3-flash }
   C: { provider: deepseek-anthropic, model: deepseek-flash[1m] }
   D: { provider: minimax-anthropic, model: MiniMax-M3[1m] }
   E: { provider: minimax-anthropic, model: MiniMax-M3.1-Flash }
-verification:                 # machine gates P4 runs; project-declared (FR-5)
+verification:                 # machine gates P4 runs; project-declared
   - "<command>"
-ledger: true                  # stamp role + provider + model in every produced doc header (FR-4)
+ledger: true                  # stamp role + provider + model in every produced doc header

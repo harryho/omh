@@ -60,9 +60,11 @@ Create in the target repo:
 - `omh.config.yaml` — from `templates/omh.config.yaml`, every answer filled in.
 - The project rules file — from `templates/TEMPLATE-project-rules.md`, named per the target
   repo's convention (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, …).
-- Vendored playbook at `omh/` — copy from this playbook: `HARNESS.md`, `ROLES.md`, `RULES.md`,
-  `MODELS.md`, `templates/`, `tools/`, `init/`, `adapters/`, `skill/`, and `omh/VERSION`
-  carrying the source playbook's version stamp verbatim. The vendored copy is what the project
+- Vendored playbook at `omh/` — **flat, no family nesting**. Copy from this harness directory:
+  `HARNESS.md`, `ROLES.md`, `MODELS.md`, `templates/`, `init/`, `adapters/`; plus from the
+  family root: `RULES.md`, `tools/validate-config.sh` (with `tools/fixtures/`), `skill/SKILL.md`;
+  and write `omh/VERSION` with this harness's version stamp verbatim. The maintainer-side checks
+  are not vendored — the validator is the project's gate. The vendored copy is what the project
   runs on — it must not reference files outside the repo.
 
 ## 8. Init log

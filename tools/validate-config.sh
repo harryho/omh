@@ -1,14 +1,20 @@
 #!/usr/bin/env bash
-# validate-config.sh — omh config validator (schema v1). POSIX bash, no deps.
-# Config shape parsed (one line per role, exactly as templates/omh.config.yaml):
+# validate-config.sh — omh config validator (schema v2). POSIX bash, no deps.
+# Config shape parsed (one line per role, exactly as harnesses/*/templates/omh.config.yaml):
 #   A: { provider: <p>, model: <m> }
-# Errors (exit 1): malformed/missing role line; C/D/E model == B model (FR-4).
+# v2 (OMH-1): requires `omh: v2` and `harness: <kebab-id>` lines.
+# Errors (exit 1): schema/harness/role problems; C/D/E model == B model.
 # Warnings (stderr, exit 0): same-model pair off the B axis; same provider on any
-# pair involving C, D or E. Availability is NOT checked here (catalog churn is
-# operator-side; see MODELS.md route-churn policy).
+# pair involving C, D or E. Availability is NOT checked here (root MODELS.md route-churn).
 set -u
 f="${1:?usage: validate-config.sh <config-file>}"
 [ -f "$f" ] || { echo "ERROR: no such file: $f"; exit 1; }
+
+grep -Eq "^omh: v2[[:space:]]*$" "$f" || { echo "ERROR: missing 'omh: v2' header line (schema v2, OMH-1)"; exit 1; }
+harness=$(grep -E "^harness: " "$f" | head -1 | sed -E 's/^harness:[[:space:]]*//')
+if ! printf '%s' "$harness" | grep -Eq "^[a-z][a-z0-9-]*$"; then
+  echo "ERROR: missing or malformed 'harness: <kebab-id>' line (got: '${harness}')"; exit 1
+fi
 
 declare -A P M
 for r in A B C D E; do
@@ -39,5 +45,5 @@ for pair in B:C B:D B:E A:C A:D A:E C:D C:E D:E; do
   [ "${P[$r1]}" = "${P[$r2]}" ] && echo "WARNING: same provider $r1/$r2: ${P[$r1]}"
 done
 
-[ $rc -eq 0 ] && echo "OK: independence constraints satisfied"
+[ $rc -eq 0 ] && echo "OK: harness '$harness' — independence constraints satisfied"
 exit $rc

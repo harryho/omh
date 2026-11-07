@@ -1,6 +1,7 @@
-# AC-2 negative fixture: the budget preset with E sabotaged to B's exact model.
+# AC-2 negative fixture: budget preset with E sabotaged to B's exact model (schema v2).
 # validate-config.sh MUST reject this with exit 1 (independence: E == B).
-omh: v1
+omh: v2
+harness: rewapp
 project: fixture-e-b
 preset: budget
 roles:

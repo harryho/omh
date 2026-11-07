@@ -1,8 +1,9 @@
-# omh — oh my harness
+# rewapp — the app-rewrite harness
 
-A generic, runtime-neutral rewrite harness: the process, roles, templates, and checks a rewrite
-needs — desktop→web, desktop→mobile, or a stack swap — extracted from a rewrite that worked
-(the fxpa-rs project ran M0–M3 under this process: built, independently reviewed, closed).
+First member of the **omh** harness family ("oh my harness"). A runtime-neutral rewrite harness:
+the process, roles, templates, and checks a rewrite needs — desktop→web, desktop→mobile, or a
+stack swap — extracted from a rewrite that worked (the fxpa-rs project ran M0–M3 under this
+process: built, independently reviewed, closed).
 
 Five accountable roles instead of one agent improvising: **A** writes spec + plan, **B** builds
 (asking A, never guessing), **C** reviews the spec+plan before any code exists, **D** reviews
@@ -40,14 +41,13 @@ parity, major deviation).
 |---|---|
 | The pipeline: phases, gates, escalations | `HARNESS.md` |
 | Role contracts A–E + human | `ROLES.md` |
-| Binding rules: two-layer law, never-invent, evidence | `RULES.md` |
+| Binding rules: two-layer law, never-invent, evidence | `RULES.md` (family root; vendored flat) |
 | Model presets, pair schema, validator | `MODELS.md` |
 | Templates: spec, plan, reviews, test report, close, inventory, config | `templates/` |
 | Adoption questionnaire | `init/INIT.md` |
 | Launching roles on a specific runtime | `adapters/` |
-| Thin skill wrapper for runtime catalogs | `skill/` |
+| Skill wrapper + shared validator (family root; vendored flat) | `skill/`, `tools/` |
 | Worked example (WPF → web, with an honest FAIL) | `examples/ledgerlite/` |
-| Config validator + repo checks | `tools/` |
 
 ## Model presets
 
