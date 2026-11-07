@@ -33,7 +33,9 @@ Keep this file short and binding. Depth lives in the documents below — read th
 
 ## Current state
 
-- OMH-0 spec written 7 Nov 2026 — **Draft, awaiting Harry's review**. Nothing else exists yet by
-  design (rule 2).
-- Next action: Harry reviews SPEC-OMH-0 → status becomes Ready to build → OMH-0-plan.md is written
-  at Phase 2 entry.
+- OMH-0 spec **Ready to build** — approved by Harry, 7 Nov 2026 ("go"). Amendments: exact model
+  routes (`f1e20cf`), provenance → dotfiles catalog (`b004e39`).
+- OMH-0-plan.md written 7 Nov 2026 — **awaiting Harry's approval**. No product file exists until
+  the plan is approved (rule 2).
+- Next action: Harry approves OMH-0-plan.md → build tasks 1–13 → machine checks + init dry-run →
+  close.
