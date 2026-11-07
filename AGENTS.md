@@ -33,9 +33,10 @@ Keep this file short and binding. Depth lives in the documents below — read th
 
 ## Current state
 
-- OMH-0 spec **Ready to build** — approved by Harry, 7 Nov 2026 ("go"). Amendments: exact model
-  routes (`f1e20cf`), provenance → dotfiles catalog (`b004e39`).
-- OMH-0-plan.md written 7 Nov 2026 — **awaiting Harry's approval**. No product file exists until
-  the plan is approved (rule 2).
-- Next action: Harry approves OMH-0-plan.md → build tasks 1–13 → machine checks + init dry-run →
-  close.
+- **OMH-0 CLOSED (7 Nov 2026)** — omh v0.1 shipped; spec **Shipped**; close note
+  `notes/specs/plans/OMH-0-close.md`. Machine ACs 1–5 evidenced; AC-6/AC-7 are Harry's manual
+  readings (open handoff).
+- The playbook is live: HARNESS/ROLES/RULES/MODELS, nine templates, init questionnaire, DSH
+  adapter, skill wrapper, LedgerLite worked example (includes an honest round-1 FAIL).
+- Next action: **OMH-1 — first real adoption** — run the full loop (C and E included) on a
+  second real repo; spec written at pipeline P1 entry. `omh upgrade` stays deferred.
