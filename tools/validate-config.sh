@@ -11,7 +11,7 @@ f="${1:?usage: validate-config.sh <config-file>}"
 [ -f "$f" ] || { echo "ERROR: no such file: $f"; exit 1; }
 
 grep -Eq "^omh: v2[[:space:]]*$" "$f" || { echo "ERROR: missing 'omh: v2' header line (schema v2, OMH-1)"; exit 1; }
-harness=$(grep -E "^harness: " "$f" | head -1 | sed -E 's/^harness:[[:space:]]*//')
+harness=$(grep -E "^harness: " "$f" | head -1 | sed -E 's/#.*$//' | sed -E 's/^harness:[[:space:]]*//' | tr -d '[:space:]')
 if ! printf '%s' "$harness" | grep -Eq "^[a-z][a-z0-9-]*$"; then
   echo "ERROR: missing or malformed 'harness: <kebab-id>' line (got: '${harness}')"; exit 1
 fi
