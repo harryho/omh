@@ -40,11 +40,12 @@ that project — after being recorded in the decisions register, never silently.
 
 ## Clarifications law
 
-- Builder asks Architect when a plan step is ambiguous or reality diverges from the plan.
-- Architect answers; the answer is **binding** and is recorded in the plan's Clarifications
-  appendix: question, answer, date, sections affected.
-- Asking is always in scope. Guessing is never in scope. A builder who guesses where a question
-  was owed has taken authority the role does not grant.
+- The executing role asks the authoring role when a plan step is ambiguous or reality diverges
+  from the plan. (Each harness names its roles; rewapp's are B asks A.)
+- The authoring role answers; the answer is **binding** and is recorded in the plan's
+  Clarifications appendix: question, answer, date, sections affected.
+- Asking is always in scope. Guessing is never in scope. An executor who guesses where a
+  question was owed has taken authority the role does not grant.
 - Reality diverging from the plan is normal; the divergence is recorded, not absorbed.
 
 ## Independence law
