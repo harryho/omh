@@ -1,0 +1,31 @@
+# omh.config.yaml — project harness configuration (schema v1)
+omh: v1
+project: <name>
+source_contract:
+  kind: legacy-app            # legacy-app | existing-tests | api-spec | greenfield
+  inventory: notes/source-inventory.md
+stack:
+  from: <old stack>           # free text, e.g. "WPF .NET 4.8 desktop"
+  to: <new stack>             # free text, e.g. "React + TypeScript web"
+gates:                        # autonomous default (D5); flip any single gate to human
+  spec: auto
+  plan: auto
+  deviations: auto
+  close: auto
+escalations:                  # hard stops in every mode; edit only with a dated register entry
+  - blocking-decision
+  - fail-after-one-fix-round
+  - drift-1.5x
+  - unexplained-tree
+  - port-claim-not-in-inventory
+  - major-or-blocker-deviation
+preset: max-diversity         # max-diversity | balanced | budget (MODELS.md)
+roles:                        # one line per role — validate-config.sh parses exactly this shape
+  A: { provider: zai-anthropic, model: glm-5.3 }
+  B: { provider: zai-anthropic, model: glm-5.3-flash }
+  C: { provider: deepseek-anthropic, model: deepseek-flash[1m] }
+  D: { provider: minimax-anthropic, model: MiniMax-M3[1m] }
+  E: { provider: minimax-anthropic, model: MiniMax-M3.1-Flash }
+verification:                 # machine gates P4 runs; project-declared (FR-5)
+  - "<command>"
+ledger: true                  # stamp role + provider + model in every produced doc header (FR-4)
