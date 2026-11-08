@@ -65,7 +65,3 @@ tables), `templates/`, `init/INIT.md`, `adapters/`, `examples/`, `check.sh`, `VE
 `README.md`. Register it in the harnesses table; `tools/check-family.sh` enforces completeness and
 root purity (root docs define no role contracts or loop phases — they may reference the
 role-letter convention the validator enforces).
-
-**Provenance.** The family's first member, rewapp, was extracted from the fxpa-rust rewrite's
-process — two-layer spec/plan law, phase gates, independent review on a different model,
-evidence-based verdicts — which carried three milestones from spec to close (31 Oct – 7 Nov 2026).
