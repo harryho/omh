@@ -1,0 +1,7 @@
+# gitignore for omh harness family repo
+# Editor/OS noise
+.DS_Store
+*~
+*.swp
+# Internal working notes — not part of the shipped harness
+notes/
