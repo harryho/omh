@@ -36,7 +36,7 @@ grep -q "Test story" "$R/templates/TEMPLATE-plan.md" || bad "ac3: TEMPLATE-plan.
 grep -q "Clarifications" "$R/templates/TEMPLATE-plan.md" || bad "ac3: TEMPLATE-plan.md missing Clarifications"
 
 # --- AC-4: preset rows byte-equal to rewapp's self-contained MODELS.md ---
-grep -qF '| **max-diversity** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3[1m] | `kimi` · kimi-k2.7-code | `minimax-anthropic` · MiniMax-M3.1-Flash |' "$R/MODELS.md" \
+grep -qF '| **max-diversity** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3[1m] | `kimi` · kimi-k2.7-code | `mimo` · mimo-v2.6-pro |' "$R/MODELS.md" \
   || bad "ac4: max-diversity row drifts"
 grep -qF '| **balanced** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `mimo` · mimo-v2.6-pro | `minimax-anthropic` · MiniMax-M3[1m] | `minimax-anthropic` · MiniMax-M3.1-Flash |' "$R/MODELS.md" \
   || bad "ac4: balanced row drifts"

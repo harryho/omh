@@ -12,12 +12,12 @@ Override any single role after choosing a preset.
 
 | Preset | A architect | B builder | C spec-review | D code-review | E tester |
 |---|---|---|---|---|---|
-| **max-diversity** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3[1m] | `kimi` · kimi-k2.7-code | `minimax-anthropic` · MiniMax-M3.1-Flash |
+| **max-diversity** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3[1m] | `kimi` · kimi-k2.7-code | `mimo` · mimo-v2.6-pro |
 | **balanced** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `mimo` · mimo-v2.6-pro | `minimax-anthropic` · MiniMax-M3[1m] | `minimax-anthropic` · MiniMax-M3.1-Flash |
 | **budget** | `zai-anthropic` · glm-5.3-flash | `zai-anthropic` · glm-5.3-flash | `mimo` · mimo-v2.6-flash | `minimax-anthropic` · MiniMax-M3.1-Flash | `mimo` · mimo-v2.6-flash |
 
-Preset logic: **max-diversity** — five distinct models, maximum independence, for parity-critical
-rewrites (C and E share the `minimax-anthropic` provider, a logged warning). **balanced** — strong
+Preset logic: **max-diversity** — five distinct models across four vendors, maximum independence,
+and no logged warnings — for parity-critical rewrites. **balanced** — strong
 architect, cheap build, and three different vendors across review, test and code review (D and E
 share the `minimax-anthropic` provider, a logged warning). **budget** — cheapest defensible set
 that still keeps C, D and E off B's model (A shares B's model; C and E share `mimo-v2.6-flash`, a
@@ -76,9 +76,10 @@ Verified against the runtime's routing catalog, 13 Nov 2026:
 | `deepseek-anthropic` · deepseek-flash[1m] | text only |
 | `deepseek-anthropic` · deepseek-v4-pro | text only |
 
-- Consequence: in **max-diversity** and **balanced**, D and E can perform bounded vision
-  spot-checks on screenshot evidence natively. In **budget**, only D can — E runs on
-  `mimo-v2.6-flash`, which is text-only.
+- Consequence: **D** can run bounded vision spot-checks on screenshot evidence in every preset
+  (`kimi-k2.7-code` in max-diversity, `MiniMax-M3[1m]` in balanced, `MiniMax-M3.1-Flash` in
+  budget). **E** can only do so in **balanced** — in max-diversity it runs `mimo-v2.6-pro`, in
+  budget `mimo-v2.6-flash`, both text-only.
 - Bounded means: resolve the named visual criteria only, never escalate into a full re-review —
   a full re-review by the same agent would defeat the independence the phase exists to create.
 
