@@ -12,16 +12,16 @@ Override any single role after choosing a preset.
 
 | Preset | A architect | B builder | C spec-review | D code-review | E tester |
 |---|---|---|---|---|---|
-| **max-diversity** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3[1m] | `kimi` · kimi-k2.7-code | `mimo` · mimo-v2.6-pro |
+| **max-diversity** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3[1m] | `kimi` · kimi-k2.7-code | `minimax-anthropic` · MiniMax-M3.1-Flash |
 | **balanced** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `mimo` · mimo-v2.6-pro | `minimax-anthropic` · MiniMax-M3[1m] | `minimax-anthropic` · MiniMax-M3.1-Flash |
-| **budget** | `zai-anthropic` · glm-5.3-flash | `zai-anthropic` · glm-5.3-flash | `mimo` · mimo-v2.6-flash | `minimax-anthropic` · MiniMax-M3.1-Flash | `mimo` · mimo-v2.6-flash |
+| **budget** | `zai-anthropic` · glm-5.3-flash | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3.1-Flash | `mimo` · mimo-v2.6-flash | `minimax-anthropic` · MiniMax-M3.1-Flash |
 
-Preset logic: **max-diversity** — five distinct models across four vendors, maximum independence,
-and no logged warnings — for parity-critical rewrites. **balanced** — strong
+Preset logic: **max-diversity** — five distinct models, maximum independence, for parity-critical
+rewrites (C and E share the `minimax-anthropic` provider, a logged warning). **balanced** — strong
 architect, cheap build, and three different vendors across review, test and code review (D and E
 share the `minimax-anthropic` provider, a logged warning). **budget** — cheapest defensible set
-that still keeps C, D and E off B's model (A shares B's model; C and E share `mimo-v2.6-flash`, a
-logged warning).
+that still keeps C, D and E off B's model (A shares B's model; C and E share MiniMax-M3.1-Flash,
+a logged warning).
 
 ## Pair schema
 
@@ -76,10 +76,10 @@ Verified against the runtime's routing catalog, 13 Nov 2026:
 | `deepseek-anthropic` · deepseek-flash[1m] | text only |
 | `deepseek-anthropic` · deepseek-v4-pro | text only |
 
-- Consequence: **D** can run bounded vision spot-checks on screenshot evidence in every preset
-  (`kimi-k2.7-code` in max-diversity, `MiniMax-M3[1m]` in balanced, `MiniMax-M3.1-Flash` in
-  budget). **E** can only do so in **balanced** — in max-diversity it runs `mimo-v2.6-pro`, in
-  budget `mimo-v2.6-flash`, both text-only.
+- Consequence: **E** can run bounded vision spot-checks on screenshot evidence in every preset
+  (`MiniMax-M3.1-Flash` throughout). **D** can only do so in **max-diversity**
+  (`kimi-k2.7-code`) and **balanced** (`MiniMax-M3[1m]`) — in budget it runs `mimo-v2.6-flash`,
+  which is text-only.
 - Bounded means: resolve the named visual criteria only, never escalate into a full re-review —
   a full re-review by the same agent would defeat the independence the phase exists to create.
 
