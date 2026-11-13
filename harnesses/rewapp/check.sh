@@ -40,7 +40,7 @@ grep -qF '| **max-diversity** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · 
   || bad "ac4: max-diversity row drifts"
 grep -qF '| **balanced** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `mimo` · mimo-v2.6-pro | `minimax-anthropic` · MiniMax-M3[1m] | `minimax-anthropic` · MiniMax-M3.1-Flash |' "$R/MODELS.md" \
   || bad "ac4: balanced row drifts"
-grep -qF '| **budget** | `zai-anthropic` · glm-5.3-flash | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3.1-Flash | `mimo` · mimo-v2.6-flash | `minimax-anthropic` · MiniMax-M3.1-Flash |' "$R/MODELS.md" \
+grep -qF '| **budget** | `zai-anthropic` · glm-5.3-flash | `zai-anthropic` · glm-5.3-flash | `mimo` · mimo-v2.6-flash | `minimax-anthropic` · MiniMax-M3.1-Flash | `mimo` · mimo-v2.6-flash |' "$R/MODELS.md" \
   || bad "ac4: budget row drifts"
 
 # --- AC-4b: config template is schema v2 with harness id ---

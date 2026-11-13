@@ -14,12 +14,14 @@ Override any single role after choosing a preset.
 |---|---|---|---|---|---|
 | **max-diversity** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3[1m] | `kimi` · kimi-k2.7-code | `minimax-anthropic` · MiniMax-M3.1-Flash |
 | **balanced** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `mimo` · mimo-v2.6-pro | `minimax-anthropic` · MiniMax-M3[1m] | `minimax-anthropic` · MiniMax-M3.1-Flash |
-| **budget** | `zai-anthropic` · glm-5.3-flash | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3.1-Flash | `mimo` · mimo-v2.6-flash | `minimax-anthropic` · MiniMax-M3.1-Flash |
+| **budget** | `zai-anthropic` · glm-5.3-flash | `zai-anthropic` · glm-5.3-flash | `mimo` · mimo-v2.6-flash | `minimax-anthropic` · MiniMax-M3.1-Flash | `mimo` · mimo-v2.6-flash |
 
 Preset logic: **max-diversity** — five distinct models, maximum independence, for parity-critical
-rewrites. **balanced** — strong architect + spec reviewer on the same capable model (A=C, a logged
-warning), cheap build, independent code review and test. **budget** — cheapest defensible set
-that still keeps C, D, E off B's model (C=E share MiniMax-M3.1-Flash, a logged warning).
+rewrites (C and E share the `minimax-anthropic` provider, a logged warning). **balanced** — strong
+architect, cheap build, and three different vendors across review, test and code review (D and E
+share the `minimax-anthropic` provider, a logged warning). **budget** — cheapest defensible set
+that still keeps C, D and E off B's model (A shares B's model; C and E share `mimo-v2.6-flash`, a
+logged warning).
 
 ## Pair schema
 
@@ -75,7 +77,7 @@ Verified against the runtime's routing catalog, 13 Nov 2026:
 | `deepseek-anthropic` · deepseek-v4-pro | text only |
 
 - Consequence: in **max-diversity** and **balanced**, D and E can perform bounded vision
-  spot-checks on screenshot evidence natively. In **budget**, only E can — D runs on
+  spot-checks on screenshot evidence natively. In **budget**, only D can — E runs on
   `mimo-v2.6-flash`, which is text-only.
 - Bounded means: resolve the named visual criteria only, never escalate into a full re-review —
   a full re-review by the same agent would defeat the independence the phase exists to create.
