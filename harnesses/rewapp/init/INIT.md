@@ -3,8 +3,9 @@
 Run this procedure from the target repo's root (an empty directory is fine). Any capable agent
 with file + shell access can execute it. Ask one question at a time; record every answer.
 
-**Hard rule:** never proceed past step 4 while the validator reports an error. Warnings may
-proceed — but each accepted warning is written into the init log with who accepted it.
+**Hard rule:** never proceed past step 5 while the validator reports an error, or while any
+role's model is unconfirmed. Warnings may proceed — but each accepted warning is written into
+the init log with who accepted it.
 
 ## 1. Project name
 
@@ -39,18 +40,38 @@ bash omh/tools/validate-config.sh omh.config.yaml
 An `ERROR:` line blocks: fix the pair or pick a different role before continuing. A `WARNING:`
 line proceeds only after the human says accepted — record it.
 
-## 5. Gates
+## 5. Confirm the model for every role
+
+Before any further action, present the resolved assignment and get the human to confirm each
+role's model explicitly. The model choice is theirs to approve — not the agent's default to
+assume:
+
+| Role | Provider | Model | From |
+|---|---|---|---|
+| A — architect | | | preset / override |
+| B — builder | | | preset / override |
+| C — spec review | | | preset / override |
+| D — code review | | | preset / override |
+| E — independent test | | | preset / override |
+
+Ask: "Confirm the model for each role — accept all, or change any?" Accept only on an explicit
+confirmation of the table (or per-row confirmations). Any change goes back to step 4 for that
+role, re-runs the validator, and returns here. Do not write the config, do not scaffold, do not
+move on to gates until every row is confirmed. Record each confirmation (role, pair, who
+confirmed, date) in the init log.
+
+## 6. Gates
 
 Ask: "Fully autonomous, or does any gate pause for you?" Default: all `auto`
 (`spec · plan · deviations · close`). List the four; flip named ones to `human`.
 Parity-critical projects should at least human-gate `spec` and `plan`.
 
-## 6. Verification commands
+## 7. Verification commands
 
 Ask: "Which commands must be green at every milestone's verify phase?" → a list, or "defer to
 the M0 plan" (config gets a commented stub the M0 plan fills).
 
-## 7. Scaffold
+## 8. Scaffold
 
 Create in the target repo:
 
@@ -67,12 +88,12 @@ Create in the target repo:
   are not vendored — the validator is the project's gate. The vendored copy is what the project
   runs on — it must not reference files outside the repo.
 
-## 8. Init log
+## 9. Init log
 
-Write `notes/omh-init-log.md`: every question, answer, validator result, and accepted warning,
-with dates. This log is the provenance of every later "who chose which model" question.
+Write `notes/omh-init-log.md`: every question, answer, role-model confirmation, validator
+result, and accepted warning, with dates. This log is the provenance of every later "who chose which model" question.
 
-## 9. Hand off
+## 10. Hand off
 
 Print the config summary (roles table, gates, verification list) and the next action:
 
