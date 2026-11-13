@@ -6,8 +6,9 @@ model, so no builder ever grades its own homework.
 
 ## Presets
 
-Three presets ship with omh (owner-confirmed 7 Nov 2026; rows amended 13 Nov 2026). Override
-any single role after choosing a preset.
+Three presets ship with omh (owner-confirmed 7 Nov 2026; rows amended 13 Nov 2026). Every
+provider/model pair below was checked against the runtime's routing catalog on 13 Nov 2026.
+Override any single role after choosing a preset.
 
 | Preset | A architect | B builder | C spec-review | D code-review | E tester |
 |---|---|---|---|---|---|
@@ -54,18 +55,30 @@ readable:
 | mimo-flash | `mimo` · mimo-v2.6-flash |
 | mimo-pro | `mimo` · mimo-v2.6-pro |
 | kimi-code | `kimi` · kimi-k2.7-code |
-| deepseek-v4.1-flash | `deepseek-anthropic` · deepseek-v4.1-flash[1m] (official route; `opencode` · deepseek-v4.1-flash is the same model on another route) |
+| deepseek-v4.1-flash | `deepseek-anthropic` · deepseek-flash[1m] (official route; `opencode` · deepseek-v4.1-flash is the same model on another route) |
 
 ## Modalities
 
-- `glm-5.3` is text-only. `glm-5.3-flash`, `MiniMax-M3[1m]`, `MiniMax-M3.1-Flash` and
-  `mimo-v2.6-flash` accept text + image (verified 7 Nov 2026).
-- `kimi-k2.7-code` and `mimo-v2.6-pro` — modality **not verified**; treat as text-only until the
-  launch layer confirms otherwise.
-- Consequence: with the multimodal presets, D and E can perform bounded vision spot-checks on
-  screenshot evidence natively. Bounded means: resolve the named visual criteria only, never
-  escalate into a full re-review — a full re-review by the same agent would defeat the
-  independence the phase exists to create.
+Verified against the runtime's routing catalog, 13 Nov 2026:
+
+| Model | Input |
+|---|---|
+| `zai-anthropic` · glm-5.3 | text only |
+| `zai-anthropic` · glm-5.3-flash | text + image |
+| `minimax-anthropic` · MiniMax-M3[1m] | text + image |
+| `minimax-anthropic` · MiniMax-M3.1-Flash | text + image |
+| `kimi` · kimi-k2.7-code | text + image |
+| `kimi` · kimi-k3 | text + image |
+| `mimo` · mimo-v2.6-pro | text only |
+| `mimo` · mimo-v2.6-flash | text only |
+| `deepseek-anthropic` · deepseek-flash[1m] | text only |
+| `deepseek-anthropic` · deepseek-v4-pro | text only |
+
+- Consequence: in **max-diversity** and **balanced**, D and E can perform bounded vision
+  spot-checks on screenshot evidence natively. In **budget**, only E can — D runs on
+  `mimo-v2.6-flash`, which is text-only.
+- Bounded means: resolve the named visual criteria only, never escalate into a full re-review —
+  a full re-review by the same agent would defeat the independence the phase exists to create.
 
 ## Route churn
 
@@ -74,8 +87,9 @@ route availability — that is the launch layer's job, at launch time. If a pres
 unavailable, the launch layer reports which pair failed, and init offers the alternate pool:
 `kimi` · kimi-k3 / kimi-k2.7-code, `zai-anthropic` · glm-5.3 / glm-5.3-flash,
 `minimax-anthropic` · MiniMax-M3[1m] / MiniMax-M3.1-Flash, `mimo` · mimo-v2.6-flash /
-mimo-v2.6-pro, `deepseek-anthropic` · deepseek-v4.1-flash[1m] / deepseek-v4-pro, `opencode`
-routes. Any substitution must still satisfy the validator (C/D/E ≠ B).
+mimo-v2.6-pro, `deepseek-anthropic` · deepseek-flash[1m] / deepseek-v4-pro, `opencode` routes
+(`deepseek-v4-pro`, `deepseek-v4.1-flash`, `glm-5.3`, `glm-5.3-flash`, `kimi-k2.7-code`,
+`kimi-k3`, `minimax-m3`, …). Any substitution must still satisfy the validator (C/D/E ≠ B).
 
 ## Choosing a preset
 

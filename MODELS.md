@@ -32,5 +32,7 @@ route availability — that is the launch layer's job, at launch time. If a pres
 unavailable, the launch layer reports which pair failed, and init offers the alternate pool:
 `kimi` · kimi-k3 / kimi-k2.7-code, `zai-anthropic` · glm-5.3 / glm-5.3-flash,
 `minimax-anthropic` · MiniMax-M3[1m] / MiniMax-M3.1-Flash, `mimo` · mimo-v2.6-flash /
-mimo-v2.6-pro, `deepseek-anthropic` · deepseek-v4.1-flash[1m] / deepseek-v4-pro, `opencode`
-routes. Any substitution must still satisfy the validator's independence errors.
+mimo-v2.6-pro, `deepseek-anthropic` · deepseek-flash[1m] / deepseek-v4-pro, `opencode` routes
+(`deepseek-v4-pro`, `deepseek-v4.1-flash`, `glm-5.3`, `glm-5.3-flash`, `kimi-k2.7-code`,
+`kimi-k3`, `minimax-m3`, …). Any substitution must still satisfy the validator's independence
+errors.

@@ -32,6 +32,20 @@ The launch prompt carries **paths and protocol, never conclusions**:
 Any prompt that states the implementer's conclusion has anchored the review it was supposed to
 independentize.
 
+## Route catalog
+
+The `provider` / `model` ids in the presets are DSH route ids, not free-form names. They are
+checked against the DSH routing catalog — the profile patch that defines the providers and
+their model lists (in the owner's dotfiles, `agents/config/dsh/cordis.patch.yml`; deployed per
+profile at `~/.dsh/profiles/<profile>/cordis.patch.yml`). Two facts the catalog settles:
+
+- A model id exists **per provider**. `deepseek-v4.1-flash` is on `opencode`, not on
+  `deepseek-anthropic` — the same model on a different route.
+- Modality is declared per model entry. Some ids accept text + image, others are text-only.
+
+Before trusting a preset, confirm the route still exists and check the modality you need. A
+preset row is config data, so a vanished route is a config edit, not a code change.
+
 ## Ledger stamping
 
 Every document a role produces opens with a header row:
