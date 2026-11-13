@@ -30,7 +30,7 @@ Warnings exist to be read: a project that accepts a warning records it in the de
 Catalogs change; presets are config data, not code. The validator deliberately does **not** check
 route availability — that is the launch layer's job, at launch time. If a preset route is
 unavailable, the launch layer reports which pair failed, and init offers the alternate pool:
-`kimi` · kimi-k3, `kimi` · kimi-k2.7-code, `zai-anthropic` · glm-5.3 / glm-5.3-flash,
-`minimax-anthropic` · MiniMax-M3[1m] / MiniMax-M3.1-Flash, `mimo` · mimo-v2.6-flash,
-`deepseek-anthropic` · deepseek-flash[1m] / deepseek-v4-pro, `opencode` routes. Any substitution
-must still satisfy the validator's independence errors.
+`kimi` · kimi-k3 / kimi-k2.7-code, `zai-anthropic` · glm-5.3 / glm-5.3-flash,
+`minimax-anthropic` · MiniMax-M3[1m] / MiniMax-M3.1-Flash, `mimo` · mimo-v2.6-flash /
+mimo-v2.6-pro, `deepseek-anthropic` · deepseek-v4.1-flash[1m] / deepseek-v4-pro, `opencode`
+routes. Any substitution must still satisfy the validator's independence errors.

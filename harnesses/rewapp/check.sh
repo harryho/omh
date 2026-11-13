@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# check.sh — rewapp harness gates (v0.1.1; moved from tools/check-omh0.sh in OMH-1).
+# check.sh — rewapp harness gates (v0.1.1).
 # Run from repo root. Family-level structure is gated by tools/check-family.sh.
 set -u
 cd "$(dirname "$0")/../.." || exit 1   # repo root
@@ -35,12 +35,12 @@ grep -q "no code" "$R/templates/TEMPLATE-spec.md" || bad "ac3: TEMPLATE-spec.md 
 grep -q "Test story" "$R/templates/TEMPLATE-plan.md" || bad "ac3: TEMPLATE-plan.md missing test story"
 grep -q "Clarifications" "$R/templates/TEMPLATE-plan.md" || bad "ac3: TEMPLATE-plan.md missing Clarifications"
 
-# --- AC-4: preset rows byte-equal SPEC-OMH-0 FR-9, now in rewapp's self-contained MODELS.md ---
-grep -qF '| **max-diversity** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `deepseek-anthropic` · deepseek-flash[1m] | `minimax-anthropic` · MiniMax-M3[1m] | `minimax-anthropic` · MiniMax-M3.1-Flash |' "$R/MODELS.md" \
+# --- AC-4: preset rows byte-equal to rewapp's self-contained MODELS.md ---
+grep -qF '| **max-diversity** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3[1m] | `kimi` · kimi-k2.7-code | `minimax-anthropic` · MiniMax-M3.1-Flash |' "$R/MODELS.md" \
   || bad "ac4: max-diversity row drifts"
-grep -qF '| **balanced** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `zai-anthropic` · glm-5.3 | `minimax-anthropic` · MiniMax-M3[1m] | `minimax-anthropic` · MiniMax-M3.1-Flash |' "$R/MODELS.md" \
+grep -qF '| **balanced** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `mimo` · mimo-v2.6-pro | `minimax-anthropic` · MiniMax-M3[1m] | `minimax-anthropic` · MiniMax-M3.1-Flash |' "$R/MODELS.md" \
   || bad "ac4: balanced row drifts"
-grep -qF '| **budget** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3.1-Flash | `mimo` · mimo-v2.6-flash | `minimax-anthropic` · MiniMax-M3.1-Flash |' "$R/MODELS.md" \
+grep -qF '| **budget** | `zai-anthropic` · glm-5.3-flash | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3.1-Flash | `mimo` · mimo-v2.6-flash | `minimax-anthropic` · MiniMax-M3.1-Flash |' "$R/MODELS.md" \
   || bad "ac4: budget row drifts"
 
 # --- AC-4b: config template is schema v2 with harness id ---

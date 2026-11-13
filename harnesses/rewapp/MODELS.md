@@ -6,14 +6,14 @@ model, so no builder ever grades its own homework.
 
 ## Presets
 
-Three presets ship with omh (owner-confirmed 7 Nov 2026, verified against the routing catalog
-cited in SPEC-OMH-0 §9). Override any single role after choosing a preset.
+Three presets ship with omh (owner-confirmed 7 Nov 2026; rows amended 13 Nov 2026). Override
+any single role after choosing a preset.
 
 | Preset | A architect | B builder | C spec-review | D code-review | E tester |
 |---|---|---|---|---|---|
-| **max-diversity** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `deepseek-anthropic` · deepseek-flash[1m] | `minimax-anthropic` · MiniMax-M3[1m] | `minimax-anthropic` · MiniMax-M3.1-Flash |
-| **balanced** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `zai-anthropic` · glm-5.3 | `minimax-anthropic` · MiniMax-M3[1m] | `minimax-anthropic` · MiniMax-M3.1-Flash |
-| **budget** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3.1-Flash | `mimo` · mimo-v2.6-flash | `minimax-anthropic` · MiniMax-M3.1-Flash |
+| **max-diversity** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3[1m] | `kimi` · kimi-k2.7-code | `minimax-anthropic` · MiniMax-M3.1-Flash |
+| **balanced** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `mimo` · mimo-v2.6-pro | `minimax-anthropic` · MiniMax-M3[1m] | `minimax-anthropic` · MiniMax-M3.1-Flash |
+| **budget** | `zai-anthropic` · glm-5.3-flash | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3.1-Flash | `mimo` · mimo-v2.6-flash | `minimax-anthropic` · MiniMax-M3.1-Flash |
 
 Preset logic: **max-diversity** — five distinct models, maximum independence, for parity-critical
 rewrites. **balanced** — strong architect + spec reviewer on the same capable model (A=C, a logged
@@ -51,29 +51,35 @@ readable:
 | glm-flash | `zai-anthropic` · glm-5.3-flash |
 | minimax | `minimax-anthropic` · MiniMax-M3[1m] |
 | minimax-flash, minimax-m3.1-flash | `minimax-anthropic` · MiniMax-M3.1-Flash |
-| deepseek-v4.1-flash | `deepseek-anthropic` · deepseek-flash[1m] (official route; `opencode` · deepseek-v4.1-flash is the same model on another route) |
+| mimo-flash | `mimo` · mimo-v2.6-flash |
+| mimo-pro | `mimo` · mimo-v2.6-pro |
+| kimi-code | `kimi` · kimi-k2.7-code |
+| deepseek-v4.1-flash | `deepseek-anthropic` · deepseek-v4.1-flash[1m] (official route; `opencode` · deepseek-v4.1-flash is the same model on another route) |
 
 ## Modalities
 
-- `glm-5.3` is text-only. Every other preset model accepts text + image.
-- Consequence: with these presets, D and E can perform bounded vision spot-checks on screenshot
-  evidence natively. Bounded means: resolve the named visual criteria only, never escalate into a
-  full re-review — a full re-review by the same agent would defeat the independence the phase
-  exists to create.
+- `glm-5.3` is text-only. `glm-5.3-flash`, `MiniMax-M3[1m]`, `MiniMax-M3.1-Flash` and
+  `mimo-v2.6-flash` accept text + image (verified 7 Nov 2026).
+- `kimi-k2.7-code` and `mimo-v2.6-pro` — modality **not verified**; treat as text-only until the
+  launch layer confirms otherwise.
+- Consequence: with the multimodal presets, D and E can perform bounded vision spot-checks on
+  screenshot evidence natively. Bounded means: resolve the named visual criteria only, never
+  escalate into a full re-review — a full re-review by the same agent would defeat the
+  independence the phase exists to create.
 
 ## Route churn
 
 Catalogs change; presets are config data, not code. The validator deliberately does **not** check
 route availability — that is the launch layer's job, at launch time. If a preset route is
 unavailable, the launch layer reports which pair failed, and init offers the alternate pool:
-`kimi` · kimi-k3, `kimi` · kimi-k2.7-code, `zai-anthropic` · glm-5.3 / glm-5.3-flash,
-`minimax-anthropic` · MiniMax-M3[1m] / MiniMax-M3.1-Flash, `mimo` · mimo-v2.6-flash,
-`deepseek-anthropic` · deepseek-flash[1m] / deepseek-v4-pro, `opencode` routes. Any substitution
-must still satisfy the validator (C/D/E ≠ B).
+`kimi` · kimi-k3 / kimi-k2.7-code, `zai-anthropic` · glm-5.3 / glm-5.3-flash,
+`minimax-anthropic` · MiniMax-M3[1m] / MiniMax-M3.1-Flash, `mimo` · mimo-v2.6-flash /
+mimo-v2.6-pro, `deepseek-anthropic` · deepseek-v4.1-flash[1m] / deepseek-v4-pro, `opencode`
+routes. Any substitution must still satisfy the validator (C/D/E ≠ B).
 
 ## Choosing a preset
 
 - Parity-critical rewrite (an old app that must not lose behaviour) → **max-diversity**.
-- Solo, fast-moving, spec written by a strong model you trust → **balanced**.
+- Solo, fast-moving → **balanced**.
 - Batch runs, low stakes, cost-bound → **budget**.
 - Override any role after picking a preset; re-run the validator; record accepted warnings.

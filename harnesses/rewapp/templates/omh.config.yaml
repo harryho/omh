@@ -24,8 +24,8 @@ preset: max-diversity         # model preset: max-diversity | balanced | budget 
 roles:                        # one line per role — validate-config.sh parses exactly this shape
   A: { provider: zai-anthropic, model: glm-5.3 }
   B: { provider: zai-anthropic, model: glm-5.3-flash }
-  C: { provider: deepseek-anthropic, model: deepseek-flash[1m] }
-  D: { provider: minimax-anthropic, model: MiniMax-M3[1m] }
+  C: { provider: minimax-anthropic, model: MiniMax-M3[1m] }
+  D: { provider: kimi, model: kimi-k2.7-code }
   E: { provider: minimax-anthropic, model: MiniMax-M3.1-Flash }
 verification:                 # machine gates P4 runs; project-declared
   - "<command>"

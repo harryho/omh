@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# check-family.sh — family-level gates for the omh harness family (SPEC-OMH-1 FR-6).
+# check-family.sh — family-level gates for the omh harness family.
 # Run from repo root. Per-harness content is gated by each harness's own check.sh.
 set -u
 cd "$(dirname "$0")/.." || exit 1
