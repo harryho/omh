@@ -9,23 +9,22 @@ Keep this file short and binding. Depth lives in the documents below — read th
 
 | Need | File |
 |---|---|
-| Family index: which harnesses exist, adding one | [README.md](README.md) |
-| Founding design (v0.1): roles, pipeline, gates, decisions D1–D12 | [notes/specs/SPEC-OMH-0-harness-design.md](notes/specs/SPEC-OMH-0-harness-design.md) |
-| Family design (v0.1.1): harness family, flat vendoring | [notes/specs/SPEC-OMH-1-harness-family.md](notes/specs/SPEC-OMH-1-harness-family.md) |
+| Family index: which harnesses exist, adopting one, adding one | [README.md](README.md) |
 | Shared law: binding rules (two-layer, never-invent, evidence) | [RULES.md](RULES.md) |
 | Shared law: model pairs, validator contract | [MODELS.md](MODELS.md) |
-| rewapp: pipeline, roles, templates, init, example | `harnesses/rewapp/` |
-| Config validator + family checks | `tools/` |
-| Skill router | `skill/SKILL.md` |
-| Specs / plans / reviews / evidence | `notes/` |
+| rewapp: pipeline, roles, templates, init, example | [harnesses/rewapp/README.md](harnesses/rewapp/README.md) |
+| Config validator + family checks | [tools/validate-config.sh](tools/validate-config.sh) |
+| Skill router | [skill/SKILL.md](skill/SKILL.md) |
+| A worked spec → plan → review → test → close set | [harnesses/rewapp/examples/ledgerlite/](harnesses/rewapp/examples/ledgerlite/) |
 
 ## Hard rules (binding)
 
-1. **Two-layer law applies to omh's own docs.** Design/what-why in `notes/specs/SPEC-*.md`; exact
-   files, contents and steps in `notes/specs/plans/*-plan.md`. Never mix.
-2. **Spec → plan → Harry approval → build.** One milestone per objective.
-3. **The decisions registers (SPEC-OMH-0 §5 D1–D12; SPEC-OMH-1 §5) are contracts.** Changing one
-   means editing the register with a date — never silently picking a different default.
+1. **Two-layer law.** Design/what-why lives in a spec; exact files, contents and steps live in a
+   plan. Never mix. In a project running omh those are `notes/specs/SPEC-*.md` and
+   `notes/specs/plans/*-plan.md`.
+2. **Spec → plan → human approval → build.** One milestone per objective.
+3. **Decisions are contracts.** A decision that changes is edited in place with a date — never
+   silently replaced by a different default. Preset rows live in each harness's `MODELS.md`.
 4. **Independence constraint** (validator-enforced, no exceptions without a dated register entry):
    the review/test roles must each run a model different from the build role's.
 5. **Commit per task**, conventional commits scoped to the milestone. `main` is the only branch
@@ -35,11 +34,9 @@ Keep this file short and binding. Depth lives in the documents below — read th
 7. **Root purity:** root docs define no role contracts or loop phases; harness-specific content
    lives under `harnesses/<id>/` (enforced by `tools/check-family.sh`).
 
-## Current state
+Internal working notes live in `notes/` and are git-ignored — they are not part of the shipped
+harness.
 
-- **OMH-0 CLOSED (7 Nov 2026)** — rewapp v0.1 shipped (spec Shipped; AC-6/AC-7 manual readings
-  with Harry).
-- **OMH-1 CLOSED (7 Nov 2026)** — family restructure shipped: `harnesses/rewapp/` v0.1.1 +
-  shared root law, flat vendoring proven by dry-run; AC-6 manual read with Harry.
-- Next: **OMH-2 — first real adoption** (full loop incl. C and E on a second real repo; spec at
-  P1 entry). `omh upgrade`/re-sync stays deferred.
+## If you are here to adopt omh
+
+Start at [README.md](README.md) → pick a harness → run its `init/INIT.md` in the target repo.
