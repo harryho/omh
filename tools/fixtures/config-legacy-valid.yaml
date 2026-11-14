@@ -1,0 +1,11 @@
+# AC-2 legacy fixture: schema v2, untyped A–E letters — letter fallback keeps old
+# configs valid. C and E share the minimax provider: one warning, exit 0.
+omh: v2
+harness: rewapp
+project: fixture-legacy-valid
+roles:
+  A: { provider: zai-anthropic, model: glm-5.3 }
+  B: { provider: zai-anthropic, model: glm-5.3-flash }
+  C: { provider: minimax-anthropic, model: MiniMax-M3[1m] }
+  D: { provider: kimi, model: kimi-k2.7-code }
+  E: { provider: minimax-anthropic, model: MiniMax-M3.1-Flash }

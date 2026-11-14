@@ -1,0 +1,12 @@
+# AC-2 positive fixture: insitu role composition, schema v3 (typed A/B/R/V).
+# validate-config.sh MUST accept: exit 0, OK line, no warnings.
+omh: v3
+harness: insitu
+project: fixture-insitu-valid
+preset: max-diversity
+roles:
+  A: { provider: zai-anthropic, model: glm-5.3, type: planner }
+  B: { provider: zai-anthropic, model: glm-5.3-flash, type: builder }
+  R: { provider: kimi, model: kimi-k2.7-code, type: reviewer }
+  V: { provider: minimax-anthropic, model: MiniMax-M3.1-Flash, type: verifier }
+independence: R-B, V-B, V-R

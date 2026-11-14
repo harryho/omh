@@ -1,0 +1,8 @@
+# AC-2 negative fixture: two builder-typed roles.
+omh: v3
+harness: insitu
+project: fixture-insitu-two-builders
+roles:
+  B: { provider: zai-anthropic, model: glm-5.3-flash, type: builder }
+  W: { provider: zai-anthropic, model: glm-5.3, type: builder }
+  R: { provider: kimi, model: kimi-k2.7-code, type: reviewer }
