@@ -7,7 +7,7 @@ no single reviewer owns both verdicts.
 
 ## Presets
 
-Three presets ship with insitu (max-diversity is the FXPA run's shape as actually deployed,
+Three presets ship with upgrade (max-diversity is the FXPA run's shape as actually deployed,
 14 Nov 2026; balanced and budget are built from routes the family catalog-checked on
 13 Nov 2026). Every role is overridable after choosing a preset.
 
@@ -51,7 +51,7 @@ letter-default roles) — dependency-free; run it after any role change:
 | Same model on a pair with no builder in it | warning — logged, proceeds |
 | Same provider on any pair involving a control role | warning — logged, proceeds |
 
-insitu configs declare `independence: R-B, V-B, V-R` — the FXPA three-vendor law as hard pairs.
+upgrade configs declare `independence: R-B, V-B, V-R` — the FXPA three-vendor law as hard pairs.
 Warnings exist to be read: a project that accepts a warning records it in the decisions
 register.
 

@@ -64,7 +64,7 @@ happens.)
 
 ### Untracked residue
 
-<Build/publish/log output paths; covered by ignore rules; never `git add`-ed.>
+<Build/ship/log output paths; covered by ignore rules; never `git add`-ed.>
 
 ### Input-carrying entries
 
@@ -72,12 +72,12 @@ One per census K-row — the mechanism that puts the input where the app reads i
 
 | Census row | Input | Carrying mechanism |
 |---|---|---|
-| K-1 | <input> | <csproj Content include / publish layout / copy step> |
+| K-1 | <input> | <resource manifest entry / install layout / copy step / embed directive> |
 
 ### Machine-audit commands
 
 The exact commands P5a runs, with expected outputs inline (status empty; changed-file set;
-per-file numstat; census/compile-list equality; publish contents vs K-rows):
+per-file numstat; census/compiled-unit list equality; shipped contents vs K-rows):
 
 ```bash
 <command>   # expected: <exact output>
@@ -107,7 +107,7 @@ checks the table against the census row-by-row:
 | Census row | Proof command |
 |---|---|
 | C-<n> | <command> |
-| K-<n> | <publish/contents check> |
+| K-<n> | <ship/contents check> |
 
 Smoke steps: <launch, window/title evidence, log check, census re-check — each with expected
 output. No scripted GUI input; walkthrough rows are the pack's, not the smoke's.>

@@ -23,8 +23,8 @@ was deliberately not read (V's report; optionally B's evidence file).>
 
 1. <diff = declared footprint — file set, numstat, commits>
 2. <byte-identity of untouched categories>
-3. <input-carrying entries actually present in build/publish output>
-4. <compile-list / census equality>
+3. <input-carrying entries actually present in the shipped output>
+4. <compiled-unit list / census equality>
 5. <no behaviour change beyond the declared edits>
 6. <no build output committed>
 

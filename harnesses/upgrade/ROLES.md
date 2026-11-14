@@ -2,7 +2,7 @@
 
 Four agent roles plus an orchestrator and a human. Every document names its author in the
 header (role · provider · model · date) — accountability is per document, not per project.
-Role letters are insitu's own composition of the family role types: A planner, B builder,
+Role letters are upgrade's own composition of the family role types: A planner, B builder,
 R reviewer, V verifier.
 
 | Role | Type | Owns | Deliverable | Authority | Hard prohibitions |

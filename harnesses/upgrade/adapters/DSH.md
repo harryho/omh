@@ -1,6 +1,6 @@
-# DSH adapter — launching insitu roles on this runtime
+# DSH adapter — launching upgrade roles on this runtime
 
-How the four insitu roles map onto this runtime's mechanics. Everything else in `harnesses/insitu/`
+How the four upgrade roles map onto this runtime's mechanics. Everything else in `harnesses/upgrade/`
 is runtime-neutral; this file is the only place runtime vocabulary appears.
 
 ## Roles → mechanics
@@ -23,7 +23,7 @@ A launch prompt tells an agent its role and inputs — never which runtime is la
 prompt must not mention DSH, teammates, or harness machinery; the artifact speaks for itself.
 
 Bad: "You are R, a subagent spawned by the DSH team lead to review this plan."
-Good: "You are role R (reviewer) in an insitu upgrade run. Read the design of record and parity
+Good: "You are role R (reviewer) in an upgrade upgrade run. Read the design of record and parity
 census first, derive your own checklist, then review the plan at notes/plan.md."
 
 ## The V prompt is a protocol, not a summary

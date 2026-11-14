@@ -1,8 +1,8 @@
 # AC-2 boundary fixture: two control roles share a model with NO declared pair —
 # a logged warning, not an error (the harness would declare R-V to make it hard).
 omh: v3
-harness: insitu
-project: fixture-insitu-control-same-model
+harness: upgrade
+project: fixture-upgrade-control-same-model
 roles:
   A: { provider: zai-anthropic, model: glm-5.3, type: planner }
   B: { provider: zai-anthropic, model: glm-5.3-flash, type: builder }

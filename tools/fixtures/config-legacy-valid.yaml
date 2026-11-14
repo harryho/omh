@@ -1,7 +1,7 @@
 # AC-2 legacy fixture: schema v2, untyped A–E letters — letter fallback keeps old
 # configs valid. C and E share the minimax provider: one warning, exit 0.
 omh: v2
-harness: rewapp
+harness: rewrite
 project: fixture-legacy-valid
 roles:
   A: { provider: zai-anthropic, model: glm-5.3 }

@@ -23,7 +23,7 @@ Each command was re-run by V, verbatim. Observed output is recorded; one pass/fa
 |---|---|---|---|---|
 | V1 | <build> | <criterion> |  | PASS/FAIL |
 | V2 | <diff/footprint checks> |  |  |  |
-| V3 | <publish + contents (inputs included)> |  |  |  |
+| V3 | <ship + contents (inputs included)> |  |  |  |
 | V4 | <probe commands — the full census probe set> |  |  |  |
 | V5 | <launch> |  |  |  |
 

@@ -10,11 +10,11 @@ results land in the close note's parity table. Preconditions come from the smoke
 | **Prepared by** | orchestrator (steps) + A (expected observations) |
 | **Date of session** | <filled when run> |
 | **Executed by** | <the human> |
-| **Build under test** | <exact build/publish path> |
+| **Build under test** | <exact build/ship path> |
 
 ## Preconditions (from P5b — must already be green)
 
-<Launch works; probes green; audit MATCH; publish contents carry the K-rows.>
+<Launch works; probes green; audit MATCH; shipped contents carry the K-rows.>
 
 ## Steps
 
@@ -32,7 +32,7 @@ Result: <PASS / FAIL / notes>
 
 Result: <…>
 
-<Lesson from run UPG-1 (see the insitu example): where a capability depends on locale, settings
+<Lesson from run UPG-1 (see the upgrade example): where a capability depends on locale, settings
 or environment, repeat its step once under a varied setting (e.g. a non-default locale) — a
 walkthrough that passed one way can still regress another.>
 

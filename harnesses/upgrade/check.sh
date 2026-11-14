@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# check.sh — insitu harness gates (v0.1.0).
+# check.sh — upgrade harness gates (v0.1.0).
 # Run from repo root. Family-level structure is gated by tools/check-family.sh.
 set -u
 cd "$(dirname "$0")/../.." || exit 1   # repo root
-R=harnesses/insitu
+R=harnesses/upgrade
 fail=0
 say() { printf '%s\n' "$*"; }
 bad() { say "FAIL $*"; fail=1; }
@@ -31,11 +31,11 @@ for p in \
   "$R/examples/stockplot/close-upg-1.md"; do
   [ -f "$p" ] || bad "ac3: missing $p"
 done
-grep -q "v0.1.0" "$R/VERSION" || bad "ac3: insitu VERSION is not v0.1.0"
+grep -q "v0.1.0" "$R/VERSION" || bad "ac3: upgrade VERSION is not v0.1.0"
 
 # --- AC-4: law markers ---
 grep -qF 'Roles are configured as `{ provider, model }` pairs. A bare model name is rejected at' "$R/MODELS.md" \
-  || bad "ac4: D5 law line missing from insitu MODELS.md"
+  || bad "ac4: D5 law line missing from upgrade MODELS.md"
 grep -q 'human by law' "$R/HARNESS.md" || bad "ac4: HARNESS.md missing 'human by law' (direction gate)"
 grep -q 'E7' "$R/HARNESS.md" || bad "ac4: HARNESS.md missing E7 (parity gap outside the census)"
 grep -q 'safe-default rule' "$R/HARNESS.md" || bad "ac4: HARNESS.md missing the safe-default rule"
@@ -58,7 +58,7 @@ grep -q 'Input-contract check' "$R/templates/TEMPLATE-footprint-audit.md" || bad
 
 # --- AC-4b: config template is schema v3 with harness id, gates, independence ---
 grep -q '^omh: v3' "$R/templates/omh.config.yaml" || bad "ac4b: config template not omh: v3"
-grep -q '^harness: insitu' "$R/templates/omh.config.yaml" || bad "ac4b: config template missing harness: insitu"
+grep -q '^harness: upgrade' "$R/templates/omh.config.yaml" || bad "ac4b: config template missing harness: upgrade"
 grep -q '^independence: R-B, V-B, V-R' "$R/templates/omh.config.yaml" || bad "ac4b: config template missing declared independence"
 grep -q '# direction is human by law — not settable here' "$R/templates/omh.config.yaml" || bad "ac4b: config template missing direction-by-law comment"
 grep -q '^  spec: human' "$R/templates/omh.config.yaml" || bad "ac4b: config template spec gate not human"
@@ -69,7 +69,7 @@ vout=$(bash tools/validate-config.sh "$R/templates/omh.config.yaml" 2>&1)
 [ $? -eq 0 ] || { say "FAIL ac4c: config template fails validation:"; say "$vout"; fail=1; }
 printf '%s' "$vout" | grep -q '^WARNING:' && { say "FAIL ac4c: config template validates with warnings:"; say "$vout"; fail=1; }
 
-# --- AC-4d: preset rows byte-equal to insitu MODELS.md ---
+# --- AC-4d: preset rows byte-equal to upgrade MODELS.md ---
 grep -qF '| **max-diversity** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `kimi` · kimi-k2.7-code | `minimax-anthropic` · MiniMax-M3.1-Flash |' "$R/MODELS.md" \
   || bad "ac4d: max-diversity row drifts"
 grep -qF '| **balanced** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `mimo` · mimo-v2.6-pro | `kimi` · kimi-k2.7-code |' "$R/MODELS.md" \
@@ -89,7 +89,7 @@ grep -q 'E7' "$R/examples/stockplot/close-upg-1.md" || bad "ac5b: example close 
 # --- AC-neutrality: runtime-neutral vocabulary (adapters/ excluded) ---
 hits=$(grep -rnE "DSH|teammate|create_goal|workflow" \
   "$R/HARNESS.md" "$R/ROLES.md" "$R/README.md" "$R/MODELS.md" "$R/templates" "$R/init" "$R/examples" 2>/dev/null)
-[ -n "$hits" ] && { say "FAIL neutrality: runtime terms outside insitu adapters:"; say "$hits"; fail=1; }
+[ -n "$hits" ] && { say "FAIL neutrality: runtime terms outside upgrade adapters:"; say "$hits"; fail=1; }
 
-if [ $fail -eq 0 ]; then say "OK: insitu check green"; fi
+if [ $fail -eq 0 ]; then say "OK: upgrade check green"; fi
 exit $fail

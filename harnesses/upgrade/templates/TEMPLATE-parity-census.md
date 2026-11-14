@@ -41,12 +41,12 @@ Row laws:
 ## Inputs & contracts
 
 Everything the app consumes at runtime — the class of failure where byte-identical code still
-produces a broken shipped feature because an input never made it into the build or publish
+produces a broken shipped feature because an input never made it into the shipped
 output.
 
 | id | Input the app consumes | Evidence (where it is read) | Must exist at runtime as | Carried by (footprint entry) |
 |---|---|---|---|---|
-| K-1 | <data tree / config file / side-car DLL / endpoint> | <read site, `file:line`> | <runtime path/shape> | <csproj Content include / publish layout / copy step> |
+| K-1 | <data tree / config file / side-car binary / endpoint> | <read site, `file:line`> | <runtime path/shape> | <resource manifest entry / install layout / copy step / embed directive> |
 
 A contract row with no carrying mechanism blocks the plan (R pass 1, mapping audit). The
-publish/build audit checks these rows against the output, not just the outputs themselves.
+the shipped-output audit checks these rows against the output, not just the outputs themselves.

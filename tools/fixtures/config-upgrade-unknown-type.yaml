@@ -1,7 +1,7 @@
 # AC-2 negative fixture: role type outside the family vocabulary.
 omh: v3
-harness: insitu
-project: fixture-insitu-unknown-type
+harness: upgrade
+project: fixture-upgrade-unknown-type
 roles:
   A: { provider: zai-anthropic, model: glm-5.3, type: planner }
   B: { provider: zai-anthropic, model: glm-5.3-flash, type: builder }

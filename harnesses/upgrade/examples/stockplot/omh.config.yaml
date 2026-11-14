@@ -1,6 +1,6 @@
 # omh.config.yaml — stockplot upgrade UPG-1 (schema v3)
 omh: v3
-harness: insitu
+harness: upgrade
 project: stockplot
 source_contract:
   kind: legacy-app

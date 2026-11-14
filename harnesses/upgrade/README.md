@@ -1,4 +1,4 @@
-# insitu — the in-place upgrade harness
+# upgrade — the in-place upgrade harness
 
 Second member of the **omh** harness family ("oh my harness"). A runtime-neutral upgrade
 process: the phases, roles, templates, and checks an in-place upgrade needs — an existing app
@@ -27,7 +27,7 @@ validator refuses a setup where they would.
         ◄── FAIL returns one phase; footprint violation is a hard stop, never absorbed ───┘
 ```
 
-The human gates what matters: the **direction** call (upgrade in place vs hand off to `rewapp`
+The human gates what matters: the **direction** call (upgrade in place vs hand off to `rewrite`
 for a rewrite vs stop) is human by law; the design and the close are human by default. The
 human also runs one structured walkthrough session at close — everything else is proven by
 machines and roles before anything ships.
@@ -59,10 +59,10 @@ Three presets (max-diversity / balanced / budget), each overridable per role; se
 The invariant in all of them: R and V never share B's model, and never each other's
 (`independence: R-B, V-B, V-R`).
 
-## insitu or rewapp?
+## upgrade or rewrite?
 
-Choose `rewapp` when the deliverable is a **new app on a new stack** — desktop→web, stack swap.
-Choose `insitu` when the app must **stay itself** — a newer runtime underneath, the same
+Choose `rewrite` when the deliverable is a **new app on a new stack** — desktop→web, stack swap.
+Choose `upgrade` when the app must **stay itself** — a newer runtime underneath, the same
 features on top, every change footprinted and every capability censused before anything ships.
 
 ## Out of scope for v0.1

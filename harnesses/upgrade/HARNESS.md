@@ -18,12 +18,12 @@ orchestrator launches roles and enforces gates; it authors nothing analytical.
 | Phase | Entry | What happens | Exit |
 |---|---|---|---|
 | **P0 — state check** | an upgrade request | target repo at rest: clean tree or explained; **baseline census** recorded (tracked-file counts, source/compile counts, base commit) and spike/scratch locations declared; unexplained state stops everything (E4) | census recorded |
-| **P1 — spike + direction** | census recorded | throwaway conversion spike in a scratch clone proves the upgrade compiles and launches; evidence labelled Verified/Inferred; **human decides: upgrade in place / hand off to `rewapp` (rewrite) / stop** | spike evidence + direction recorded (`direction` gate) |
+| **P1 — spike + direction** | census recorded | throwaway conversion spike in a scratch clone proves the upgrade compiles and launches; evidence labelled Verified/Inferred; **human decides: upgrade in place / hand off to `rewrite` / stop** | spike evidence + direction recorded (`direction` gate) |
 | **P2 — design + parity census (A)** | direction = upgrade | design of record: objective, decision history, spike evidence, work location (clone + branch policy; original untouched), work breakdown, acceptance criteria with **machine-half / human-half split**, out of scope, role routes — plus the **parity census**: one row per capability of the original, plus its inputs & contracts (see the census template) | design + census approved (`spec` gate, human by default) |
 | **P3 — plan + footprint (A)** | design + census approved | plan: ledger header, goal/architecture/constraints, the **declared diff footprint** incl. a carrying mechanism per input-contract row, tasks with AC-proof steps, commands, estimates, escalations table, verification section = machine gates + one probe command per census `probe` row + smoke steps + the V protocol | plan drafted |
 | **P3.5 — R pass 1** | plan drafted | reviewer reads design + census first, derives an own checklist, only then the plan; runs the **mapping audit**: every `probe` row → a plan command, every contract row → a carrying mechanism, every `walkthrough` row → a pack step; verdict PASS / PASS-WITH-DEVIATIONS / FAIL; FAIL blocks build; re-reviews in new dated files | verdict recorded, no blocking findings |
 | **P4 — build (B)** | approved plan | task-by-task in the clone on the branch; never commit red; tree-state guards at declared checkpoints; divergence stops for a clarification (binding, logged); estimate drift >1.5× is E3 | every task committed; guards green |
-| **P5a — footprint audit** | build complete | **machine audit**, not a model call: clone diff vs the declared footprint — exact changed-file set, per-file numstat expectations, census equality, compile-list equality; publish/build output checked against the input-contract rows (outputs **and** required inputs present); anything else is E5 | audit MATCH recorded |
+| **P5a — footprint audit** | build complete | **machine audit**, not a model call: clone diff vs the declared footprint — exact changed-file set, per-file numstat expectations, census equality, compiled-unit list equality; shipped output checked against the input-contract rows (outputs **and** required inputs present); anything else is E5 | audit MATCH recorded |
 | **P5b — smoke + probes** | audit MATCH | B executes launch, log, and every census `probe` command; observed output recorded per row; FAIL returns to B | probe table green |
 | **P6 — R pass 2 ∥ V verify** | probes green | parallel, fresh, mutually blind: R reviews the clone diff against design + plan with `file:line` citations; V receives *only* the AC list and the plan's commands (which include the probe set) and re-runs everything itself | both verdicts recorded |
 | **P7 — close** | both verdicts in | the **parity table**: every census row → verdict → evidence, no blank rows (machine verdicts come from P5b/P6; `walkthrough` rows are executed by the human in one structured session from the **walkthrough pack**); deviations resolved, none silent; close note assembled by the orchestrator from role-produced artifacts | close note committed; **Shipped** |
@@ -36,7 +36,7 @@ Per-run approval checkpoints, each `auto` (roles gate each other; the human sees
 
 | Gate | Pauses… | Default |
 |---|---|---|
-| `direction` | after P1 — parity upgrade vs rewrite (`rewapp`) vs stop | **human by law** (not settable in config) |
+| `direction` | after P1 — parity upgrade vs rewrite (`rewrite`) vs stop | **human by law** (not settable in config) |
 | `spec` | after P2, before the plan is written | **human** (flippable to auto with a dated register entry) |
 | `plan` | after P3.5, before build | auto |
 | `footprint` | after P5a — accepts the audit MATCH | auto (the audit itself is machine; violations hard-stop regardless) |
@@ -49,7 +49,7 @@ Hard stops. Each one pauses the run for a human decision regardless of gate sett
 one from the config requires a dated decisions-register entry.
 
 - **E1 — blocking decision with no safe default.** A needed change outside the footprint; a
-  compile-list mismatch; anything where grinding on would be guessing with authority.
+  compiled-unit list mismatch; anything where grinding on would be guessing with authority.
 - **E2 — FAIL persisting after one fix round.** A review, probe or smoke FAIL that survived one
   fix + re-check round is systemic, not local.
 - **E3 — estimate drift >1.5× plan.** The plan no longer describes reality — re-scope rather
@@ -64,7 +64,7 @@ one from the config requires a dated decisions-register entry.
   covers: the census was incomplete. Fix via the safe-default rule where one exists, add the
   missing row, record the lesson in the register.
 
-Route churn (a role's model route fails to launch) is family MODELS law, not an insitu
+Route churn (a role's model route fails to launch) is family MODELS law, not an upgrade
 escalation; the substitute is stamped in the affected document.
 
 ## Provenance — the FXPA run this was extracted from
@@ -75,9 +75,9 @@ named the gaps. Mapping: its gates G1/G2/G3/G4 → `spec`-adjacent reviews, `foo
 
 What the precursor run missed, and what this harness adds:
 
-| Lesson (from the run's close pack) | Class | insitu answer |
+| Lesson (from the run's close pack) | Class | upgrade answer |
 |---|---|---|
-| "Can't load candle data" post-ship: byte-identical code, broken shipped feature — the publish carried none of the data tree the app reads at startup | features live in **inputs** | inputs & contracts rows (census) + carrying entries (footprint) + publish-contents check (P5a) |
+| "Can't load candle data" post-ship: byte-identical code, broken shipped feature — the shipped output carried none of the data tree the app reads at startup | features live in **inputs** | inputs & contracts rows (census) + carrying entries (footprint) + shipped-contents check (P5a) |
 | "Do indicators work?" post-ship: compute probed fine; the UI path silently no-ops — unknown until asked | features live in **runtime wiring** | capability rows with a proof method each; probes run before anything ships (P5b) |
 | Dead menu handlers and an unfinished path in the 2008 source, recorded only after investigation | the original's own **incompleteness** | `dead-in-source` disposition — recorded, preserved, never silently resurrected |
 | Smoke expected "closed gracefully"; the original shows a modal exit dialog — an unverified parity assumption inside the plan itself | unverified **parity claims** | `observation` rows pin such behaviour with cited source at census time, before the plan is written |

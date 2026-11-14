@@ -1,7 +1,7 @@
 # AC-2 negative fixture: declared independence pair violated (R and V share a model).
 omh: v3
-harness: insitu
-project: fixture-insitu-declared-pair
+harness: upgrade
+project: fixture-upgrade-declared-pair
 roles:
   A: { provider: zai-anthropic, model: glm-5.3, type: planner }
   B: { provider: zai-anthropic, model: glm-5.3-flash, type: builder }

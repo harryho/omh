@@ -29,13 +29,13 @@ One row per census `probe` row — the commands come from the plan's mapping tab
 |---|---|---|---|---|
 | C-<n> | <command> | <exact output> | <observed> | PASS/FAIL |
 
-## 3. Publish smoke (if the upgrade ships a published artifact)
+## 3. Ship smoke (if the upgrade ships an artifact)
 
-<Publish → contents listing → launch of the published exe → expected title.>
+<Ship → contents listing → launch of the shipped artifact → expected title.>
 
 ## 4. Tree-state guard
 
-`git status --porcelain` → empty. Build/publish/log output landed only under ignored paths.
+`git status --porcelain` → empty. Build/ship/log output landed only under ignored paths.
 Any dirtied tracked file: explain or escalate (E4).
 
 **Verdict:** <all rows PASS, or FAIL per row with the census row named — FAIL returns to B.>

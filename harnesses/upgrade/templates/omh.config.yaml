@@ -1,13 +1,13 @@
 # omh.config.yaml — project harness configuration (schema v3)
 omh: v3
-harness: insitu               # upgrade an existing app/system in place to a newer LTS/runtime
+harness: upgrade               # upgrade an existing app/system in place to a newer LTS/runtime
 project: <name>
 source_contract:
   kind: legacy-app            # legacy-app | existing-tests | api-spec | greenfield
   inventory: notes/parity-census.md
 stack:
-  from: <current stack>       # free text, e.g. "WinForms .NET Framework 4.8 desktop"
-  to: <target LTS/runtime>    # free text, e.g. ".NET 10 (net10.0-windows)"
+  from: <current stack>       # free text, e.g. "Electron 28 desktop app (Node 20)"
+  to: <target LTS/runtime>    # free text, e.g. "Electron 33 (Node 22)"
 gates:                        # direction is human by law — not settable here
   spec: human
   plan: auto
@@ -28,7 +28,7 @@ roles:                        # one line per role — validate-config.sh parses 
   B: { provider: zai-anthropic, model: glm-5.3-flash, type: builder }
   R: { provider: kimi, model: kimi-k2.7-code, type: reviewer }
   V: { provider: minimax-anthropic, model: MiniMax-M3.1-Flash, type: verifier }
-independence: R-B, V-B, V-R   # the FXPA three-vendor law — hard pairs, validator-enforced
+independence: R-B, V-B, V-R   # the three-vendor law — hard pairs, validator-enforced
 verification:                 # machine gates P5a/P5b run; one probe per census row lands here
   - "<command>"
 ledger: true                  # stamp role + provider + model in every produced doc header

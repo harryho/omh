@@ -19,12 +19,12 @@ defects: the audit is deterministic.
 | A1 | `git status --porcelain` | empty |  | MATCH/MISMATCH |
 | A2 | `git diff --name-only <base>..<branch>` | exactly: <file set> |  |  |
 | A3 | `git diff <base>..<branch> --numstat` | <per-file deltas> |  |  |
-| A4 | <census/compile-list equality> | identical / <count> |  |  |
+| A4 | <census/compiled-unit list equality> | identical / <count> |  |  |
 | A5 | <byte-identity check for untouched categories> | no output |  |  |
 
 ## Input-contract check
 
-Publish/build output vs the census K-rows — inputs, not just outputs:
+Shipped output vs the census K-rows — inputs, not just outputs:
 
 | Census row | Required at runtime as | Check command | Observed | Verdict |
 |---|---|---|---|---|
@@ -33,7 +33,7 @@ Publish/build output vs the census K-rows — inputs, not just outputs:
 ## Verdict
 
 **MATCH** — clone state equals the declared footprint, and every input-contract row is present
-in the build/publish output.
+in the shipped output.
 
 **VIOLATION** — anything else. Action per E5: revert the offending change first, re-run the
 audit, then escalate with the audit attached. A violation is never absorbed and never committed.

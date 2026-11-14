@@ -1,8 +1,8 @@
-# AC-2 positive fixture: insitu role composition, schema v3 (typed A/B/R/V).
+# AC-2 positive fixture: upgrade role composition, schema v3 (typed A/B/R/V).
 # validate-config.sh MUST accept: exit 0, OK line, no warnings.
 omh: v3
-harness: insitu
-project: fixture-insitu-valid
+harness: upgrade
+project: fixture-upgrade-valid
 preset: max-diversity
 roles:
   A: { provider: zai-anthropic, model: glm-5.3, type: planner }

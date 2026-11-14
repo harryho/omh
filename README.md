@@ -10,13 +10,13 @@ differ between loops.
 
 ## Start here
 
-1. **Pick a harness** from the table below — `rewrite` and `insitu` today.
+1. **Pick a harness** from the table below — `rewrite` and `upgrade` today.
 2. **Open its README** — [`harnesses/rewrite/README.md`](harnesses/rewrite/README.md) or
-   [`harnesses/insitu/README.md`](harnesses/insitu/README.md) — for the
+   [`harnesses/upgrade/README.md`](harnesses/upgrade/README.md) — for the
    loop and who does what.
 3. **Adopt it in a target repo:** an agent runs the harness's `init/INIT.md`
    ([rewrite](harnesses/rewrite/init/INIT.md) ·
-   [insitu](harnesses/insitu/init/INIT.md)), answers a short
+   [upgrade](harnesses/upgrade/init/INIT.md)), answers a short
    questionnaire, and scaffolds `omh.config.yaml`, the notes tree, and a flat vendored copy at
    `omh/`.
 4. **Read the shared law** before the first milestone: [`RULES.md`](RULES.md) and
@@ -27,7 +27,7 @@ differ between loops.
 | harness | purpose | maturity | entry |
 |---|---|---|---|
 | **rewrite** | rewrite an existing app to a new target — desktop→web, desktop→mobile, stack swap | v0.1.1 — shipped | [`harnesses/rewrite/README.md`](harnesses/rewrite/README.md) |
-| **insitu** | upgrade an existing app or system in place to a newer LTS/runtime — behaviour-preserving, diff footprinted, parity censused | v0.1.0 — scaffold | [`harnesses/insitu/README.md`](harnesses/insitu/README.md) |
+| **upgrade** | upgrade an existing app or system in place to a newer LTS/runtime — behaviour-preserving, diff footprinted, parity censused | v0.1.0 — scaffold | [`harnesses/upgrade/README.md`](harnesses/upgrade/README.md) |
 
 ## Core idea (30 seconds)
 
@@ -45,12 +45,12 @@ differ between loops.
 | Know the binding rules | [`RULES.md`](RULES.md) |
 | Configure models / understand independence | [`MODELS.md`](MODELS.md) |
 | Understand the rewrite loop | [`harnesses/rewrite/HARNESS.md`](harnesses/rewrite/HARNESS.md) |
-| Understand the upgrade loop | [`harnesses/insitu/HARNESS.md`](harnesses/insitu/HARNESS.md) |
-| Know what each role may and may not do | [`harnesses/rewrite/ROLES.md`](harnesses/rewrite/ROLES.md) · [`harnesses/insitu/ROLES.md`](harnesses/insitu/ROLES.md) |
-| Scaffold a new project | [`harnesses/rewrite/init/INIT.md`](harnesses/rewrite/init/INIT.md) · [`harnesses/insitu/init/INIT.md`](harnesses/insitu/init/INIT.md) |
+| Understand the upgrade loop | [`harnesses/upgrade/HARNESS.md`](harnesses/upgrade/HARNESS.md) |
+| Know what each role may and may not do | [`harnesses/rewrite/ROLES.md`](harnesses/rewrite/ROLES.md) · [`harnesses/upgrade/ROLES.md`](harnesses/upgrade/ROLES.md) |
+| Scaffold a new project | [`harnesses/rewrite/init/INIT.md`](harnesses/rewrite/init/INIT.md) · [`harnesses/upgrade/init/INIT.md`](harnesses/upgrade/init/INIT.md) |
 | Validate a config | [`tools/validate-config.sh`](tools/validate-config.sh) |
-| Run the roles on a specific agent runtime | [`harnesses/rewrite/adapters/`](harnesses/rewrite/adapters/) · [`harnesses/insitu/adapters/`](harnesses/insitu/adapters/) |
-| See a worked example end to end | [`harnesses/rewrite/examples/ledgerlite/`](harnesses/rewrite/examples/ledgerlite/) · [`harnesses/insitu/examples/stockplot/`](harnesses/insitu/examples/stockplot/) |
+| Run the roles on a specific agent runtime | [`harnesses/rewrite/adapters/`](harnesses/rewrite/adapters/) · [`harnesses/upgrade/adapters/`](harnesses/upgrade/adapters/) |
+| See a worked example end to end | [`harnesses/rewrite/examples/ledgerlite/`](harnesses/rewrite/examples/ledgerlite/) · [`harnesses/upgrade/examples/stockplot/`](harnesses/upgrade/examples/stockplot/) |
 
 ## Shared law (every harness repeats it verbatim in its own MODELS.md)
 

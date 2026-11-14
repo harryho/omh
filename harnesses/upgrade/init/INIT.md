@@ -1,4 +1,4 @@
-# INIT — adopting insitu in a target repository
+# INIT — adopting upgrade in a target repository
 
 Run this procedure from the target repo's root. Any capable agent with file + shell access can
 execute it. Ask one question at a time; record every answer.
@@ -14,8 +14,8 @@ Ask: "What is this project called?" → `<name>`; used in `omh.config.yaml` and 
 ## 2. Target and stacks
 
 Ask: "What is being upgraded, from what to what?" → the app/system name, current stack, target
-LTS/runtime; free text, e.g. "WinForms .NET Framework 4.8 desktop" → ".NET 10
-(`net10.0-windows`)". Goes to config `stack.from` / `stack.to`.
+LTS/runtime; free text, e.g. "Electron 28 desktop app (Node 20)" → "Electron 33 (Node 22)".
+Goes to config `stack.from` / `stack.to`.
 
 ## 3. Source contract + inventory location
 
@@ -34,7 +34,7 @@ Show the preset table from MODELS.md plus the alternate pool. Ask: "Which preset
 max-diversity (parity-critical), balanced (solo, fast), budget (batch, cost-bound)?"
 
 Then loop: "Override any role?" — for each yes: role letter + `{provider, model}` pair (bare
-model names are not accepted; MODELS.md explains why). insitu's letters are A planner /
+model names are not accepted; MODELS.md explains why). upgrade's letters are A planner /
 B builder / R reviewer / V verifier, already typed in the config template. After **every**
 change run:
 
