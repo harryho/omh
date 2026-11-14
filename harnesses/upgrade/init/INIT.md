@@ -88,7 +88,18 @@ Create in the target repo:
   and write `omh/VERSION` with this harness's version stamp verbatim. The maintainer-side checks
   are not vendored — the validator is the project's gate. The vendored copy is what the project
   runs on — it must not reference files outside the repo.
-
+- **Vendoring mode** — ask: "Should the vendored playbook be committed or ignored?"
+  → `vendoring: ignore` (default) or `vendoring: commit` in `omh.config.yaml`. Record the
+  harness version in `harness_version:` in the same file — it is the **committed** pin, and it
+  must equal the contents of `omh/VERSION`.
+  - **`ignore`** → write `/omh/` into the target repo's `.gitignore` (create the file if absent),
+    and add a hard rule to the project rules file: *"The omh playbook is not in git — vendor
+    `omh/` at the pinned `harness_version` before the first phase of a milestone."* A fresh
+    clone cannot run the loop until it is vendored.
+  - **`commit`** → vendor as usual and commit `omh/`; a fresh clone then works immediately and
+    the project's history records which process version ran.
+  Either way the vendored copy records its source — the omh repo, the harness id, and the
+  version — so the exact copy can be restored.
 ## 10. Init log + hand off
 
 Write `notes/omh-init-log.md`: every question, answer, role-model confirmation, validator

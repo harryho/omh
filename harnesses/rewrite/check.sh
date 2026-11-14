@@ -46,6 +46,9 @@ grep -qF '| **budget** | `zai-anthropic` · glm-5.3-flash | `zai-anthropic` · g
 # --- AC-4b: config template is schema v2 with harness id ---
 grep -q "^omh: v2" "$R/templates/omh.config.yaml" || bad "ac4b: config template not omh: v2"
 grep -q "^harness: rewrite" "$R/templates/omh.config.yaml" || bad "ac4b: config template missing harness: rewrite"
+grep -q "^harness_version:" "$R/templates/omh.config.yaml" || bad "ac4b: config template missing the harness_version pin"
+grep -q "^vendoring:" "$R/templates/omh.config.yaml" || bad "ac4b: config template missing the vendoring mode"
+grep -q "Vendoring mode" "$R/init/INIT.md" || bad "ac4b: INIT.md missing the vendoring-mode question"
 
 # --- AC-5: runtime-neutral vocabulary in rewrite docs (its own adapters/ excluded) ---
 hits=$(grep -rnE "DSH|teammate|create_goal|workflow" \

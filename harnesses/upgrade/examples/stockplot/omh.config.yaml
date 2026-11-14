@@ -1,6 +1,8 @@
 # omh.config.yaml — stockplot upgrade UPG-1 (schema v3)
 omh: v3
 harness: upgrade
+harness_version: v0.1.0       # the vendored playbook's version — the committed pin
+vendoring: ignore              # the vendored omh/ copy is not in git (default)
 project: stockplot
 source_contract:
   kind: legacy-app
@@ -8,6 +10,7 @@ source_contract:
 stack:
   from: "WinForms .NET Framework 4.8 desktop"
   to: ".NET 10 (net10.0-windows)"
+  policy: dotnet              # stack policy — how this stack carries inputs, ships and breaks
 gates:                        # direction is human by law — not settable here
   spec: human
   plan: auto

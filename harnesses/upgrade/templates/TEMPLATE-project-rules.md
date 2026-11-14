@@ -3,7 +3,8 @@
 <!--
 The per-project binding rules file, filled at init and named per the target repo's convention.
 Keep it short and binding. It must not name any harness or runtime — this file is read by
-whatever agent works the repo.
+whatever agent works the repo. Rule 7 applies only when `vendoring: ignore` in the harness
+config; drop it when `vendoring: commit`.
 -->
 
 ## Project
@@ -32,6 +33,8 @@ and where the work clone lives>
 4. Design + census → plan → plan review → build; never commit red; one upgrade per clone/branch.
 5. Commit per task, conventional messages scoped to the run.
 6. Label non-obvious claims Verified or Inferred.
+7. <Only when `vendoring: ignore`: the playbook is not in git — vendor it at the pinned
+   `harness_version` before the first phase of a milestone.>
 
 ## Current state
 

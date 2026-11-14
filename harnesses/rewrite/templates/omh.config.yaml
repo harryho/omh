@@ -1,6 +1,8 @@
 # omh.config.yaml — project harness configuration (schema v2)
 omh: v2
 harness: rewrite               # which harness runs this project (family index in README)
+harness_version: v0.1.1        # the vendored playbook's version — the COMMITTED pin; must match omh/VERSION
+vendoring: ignore              # ignore | commit — whether the vendored omh/ copy is in git (default: ignore)
 project: <name>
 source_contract:
   kind: legacy-app            # legacy-app | existing-tests | api-spec | greenfield

@@ -63,6 +63,9 @@ grep -q 'stack.policy' "$R/init/INIT.md" || bad "ac4: INIT.md missing the stack-
 # --- AC-4b: config template is schema v3 with harness id, gates, independence ---
 grep -q '^omh: v3' "$R/templates/omh.config.yaml" || bad "ac4b: config template not omh: v3"
 grep -q '^harness: upgrade' "$R/templates/omh.config.yaml" || bad "ac4b: config template missing harness: upgrade"
+grep -q '^harness_version:' "$R/templates/omh.config.yaml" || bad "ac4b: config template missing the harness_version pin"
+grep -q '^vendoring:' "$R/templates/omh.config.yaml" || bad "ac4b: config template missing the vendoring mode"
+grep -q "Vendoring mode" "$R/init/INIT.md" || bad "ac4b: INIT.md missing the vendoring-mode question"
 grep -q '^independence: R-B, V-B, V-R' "$R/templates/omh.config.yaml" || bad "ac4b: config template missing declared independence"
 grep -q '# direction is human by law — not settable here' "$R/templates/omh.config.yaml" || bad "ac4b: config template missing direction-by-law comment"
 grep -q '^  spec: human' "$R/templates/omh.config.yaml" || bad "ac4b: config template spec gate not human"
