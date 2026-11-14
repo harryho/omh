@@ -14,7 +14,7 @@ Authored by A at the design phase. R pass 1 audits row→proof mapping against t
 
 ## Capability rows
 
-One row per user-facing capability of the *original* — menus, commands, workflows, dialogs,
+One row per user-facing capability of the *original* — menus, commands, operations, dialogs,
 background jobs. Not a feature wishlist: a list of what the app **does today**, traced to its
 source.
 
