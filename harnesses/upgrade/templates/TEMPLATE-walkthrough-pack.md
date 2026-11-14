@@ -10,7 +10,7 @@ results land in the close note's parity table. Preconditions come from the smoke
 | **Prepared by** | orchestrator (steps) + A (expected observations) |
 | **Date of session** | <filled when run> |
 | **Executed by** | <the human> |
-| **Build under test** | <exact build/ship path> |
+| **Build under test** | <exact build/ship path — per the stack policy> |
 
 ## Preconditions (from P5b — must already be green)
 

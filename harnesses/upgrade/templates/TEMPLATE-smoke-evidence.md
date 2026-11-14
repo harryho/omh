@@ -31,7 +31,7 @@ One row per census `probe` row — the commands come from the plan's mapping tab
 
 ## 3. Ship smoke (if the upgrade ships an artifact)
 
-<Ship → contents listing → launch of the shipped artifact → expected title.>
+<Ship → contents listing → launch the stack policy's launch form → expected title.>
 
 ## 4. Tree-state guard
 

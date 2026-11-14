@@ -19,7 +19,7 @@ defects: the audit is deterministic.
 | A1 | `git status --porcelain` | empty |  | MATCH/MISMATCH |
 | A2 | `git diff --name-only <base>..<branch>` | exactly: <file set> |  |  |
 | A3 | `git diff <base>..<branch> --numstat` | <per-file deltas> |  |  |
-| A4 | <census/compiled-unit list equality> | identical / <count> |  |  |
+| A4 | <census/built-unit list equality — per the stack policy> | identical / <count> |  |  |
 | A5 | <byte-identity check for untouched categories> | no output |  |  |
 
 ## Input-contract check

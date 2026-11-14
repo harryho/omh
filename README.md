@@ -46,6 +46,7 @@ differ between loops.
 | Configure models / understand independence | [`MODELS.md`](MODELS.md) |
 | Understand the rewrite loop | [`harnesses/rewrite/HARNESS.md`](harnesses/rewrite/HARNESS.md) |
 | Understand the upgrade loop | [`harnesses/upgrade/HARNESS.md`](harnesses/upgrade/HARNESS.md) |
+| Pick the right stack mechanism for an upgrade | [`harnesses/upgrade/stacks/`](harnesses/upgrade/stacks/) |
 | Know what each role may and may not do | [`harnesses/rewrite/ROLES.md`](harnesses/rewrite/ROLES.md) · [`harnesses/upgrade/ROLES.md`](harnesses/upgrade/ROLES.md) |
 | Scaffold a new project | [`harnesses/rewrite/init/INIT.md`](harnesses/rewrite/init/INIT.md) · [`harnesses/upgrade/init/INIT.md`](harnesses/upgrade/init/INIT.md) |
 | Validate a config | [`tools/validate-config.sh`](tools/validate-config.sh) |

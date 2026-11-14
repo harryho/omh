@@ -46,7 +46,8 @@ output.
 
 | id | Input the app consumes | Evidence (where it is read) | Must exist at runtime as | Carried by (footprint entry) |
 |---|---|---|---|---|
-| K-1 | <data tree / config file / side-car binary / endpoint> | <read site, `file:line`> | <runtime path/shape> | <resource manifest entry / install layout / copy step / embed directive> |
+| K-1 | <input — data tree / config file / side-car binary / endpoint> | <read site, `file:line`> | <runtime path/shape> | <carrying mechanism — from the stack policy> |
 
 A contract row with no carrying mechanism blocks the plan (R pass 1, mapping audit). The
+mechanism comes from the project's stack policy (`stacks/<policy>.md`). The
 the shipped-output audit checks these rows against the output, not just the outputs themselves.

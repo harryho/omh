@@ -8,6 +8,7 @@ source_contract:
 stack:
   from: <current stack>       # free text, e.g. "Electron 28 desktop app (Node 20)"
   to: <target LTS/runtime>    # free text, e.g. "Electron 33 (Node 22)"
+  policy: dotnet             # stack policy id — see stacks/README.md (dotnet | java | ...);
 gates:                        # direction is human by law — not settable here
   spec: human
   plan: auto

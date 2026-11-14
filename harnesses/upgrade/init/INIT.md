@@ -17,6 +17,14 @@ Ask: "What is being upgraded, from what to what?" → the app/system name, curre
 LTS/runtime; free text, e.g. "Electron 28 desktop app (Node 20)" → "Electron 33 (Node 22)".
 Goes to config `stack.from` / `stack.to`.
 
+Then: "Which stack policy applies?" → the technology family the project is built on. Shipped
+policies are listed in `stacks/README.md` (`dotnet`, `java`); a project may point at its own
+policy document instead. Goes to config `stack.policy`.
+
+The policy is what tells the roles how this stack carries inputs, what its built units are, how
+it ships, and what breaks when it is upgraded — so it is settled up front, not improvised
+mid-run.
+
 ## 3. Source contract + inventory location
 
 Ask: "Where does the original live?" → the original repo path + base commit. This is the census

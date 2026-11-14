@@ -49,9 +49,25 @@ machines and roles before anything ships.
 | Binding rules: two-layer law, never-invent, evidence | `RULES.md` (family root; vendored flat) |
 | Model presets, pair schema, validator | `MODELS.md` |
 | Templates: design, parity census, plan, audit, smoke, reviews, verify, walkthrough, close | `templates/` |
+| Stack policies: the mechanism per technology family (.NET, Java) | `stacks/` |
 | Adoption questionnaire | `init/INIT.md` |
 | Launching roles on a specific runtime | `adapters/` |
 | Worked example (fictional WinForms 4.8 → .NET 10, with an honest review FAIL) | `examples/stockplot/` |
+
+## Stack policies — why the harness is not .NET-specific
+
+The core names the *slots* a technology stack must fill and never the mechanism that fills them.
+The mechanism lives in a **stack policy** — one document per technology family filling the same
+eight slots: source and build units · carrying mechanisms · built-unit list · shipped output
+form · side-car inputs · build and ship commands · smoke launch · upgrade hazards.
+
+`stacks/dotnet.md` and `stacks/java.md` ship today; the contract is in `stacks/README.md` and a
+new stack is one file. The project selects one with `stack.policy:` in `omh.config.yaml`, asked
+at init.
+
+This is why the harness can upgrade a .NET desktop app, a Java desktop app, or a web bundle
+with the same pipeline — and why the .NET specifics (native DLLs, satellite assemblies, the
+apphost `.exe`, binding redirects) live in a policy instead of being baked into the contract.
 
 ## Model presets
 

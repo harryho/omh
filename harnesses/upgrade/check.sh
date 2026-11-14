@@ -18,6 +18,7 @@ for p in \
   "$R/templates/TEMPLATE-walkthrough-pack.md" "$R/templates/TEMPLATE-close-note.md" \
   "$R/templates/TEMPLATE-project-rules.md" "$R/templates/omh.config.yaml" \
   "$R/init/INIT.md" "$R/adapters/DSH.md" \
+  "$R/stacks/README.md" "$R/stacks/dotnet.md" "$R/stacks/java.md" \
   "$R/examples/stockplot/omh.config.yaml" \
   "$R/examples/stockplot/design-upg-1.md" \
   "$R/examples/stockplot/parity-census-upg-1.md" \
@@ -55,6 +56,9 @@ grep -q 'machine-half' "$R/templates/TEMPLATE-design.md" && grep -q 'human-half'
   || bad "ac4: design template missing machine-half/human-half split"
 grep -q '## Decision history' "$R/templates/TEMPLATE-design.md" || bad "ac4: design template missing decision history"
 grep -q 'Input-contract check' "$R/templates/TEMPLATE-footprint-audit.md" || bad "ac4: audit template missing input-contract check"
+grep -q 'Stack policies' "$R/HARNESS.md" || bad "ac4: HARNESS.md missing the stack-policy seam"
+grep -q 'stack.policy' "$R/HARNESS.md" || bad "ac4: HARNESS.md missing the stack.policy selector"
+grep -q 'stack.policy' "$R/init/INIT.md" || bad "ac4: INIT.md missing the stack-policy question"
 
 # --- AC-4b: config template is schema v3 with harness id, gates, independence ---
 grep -q '^omh: v3' "$R/templates/omh.config.yaml" || bad "ac4b: config template not omh: v3"
@@ -77,6 +81,23 @@ grep -qF '| **balanced** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5
 grep -qF '| **budget** | `zai-anthropic` · glm-5.3-flash | `zai-anthropic` · glm-5.3-flash | `mimo` · mimo-v2.6-flash | `minimax-anthropic` · MiniMax-M3.1-Flash |' "$R/MODELS.md" \
   || bad "ac4d: budget row drifts"
 
+# --- AC-4e: stack policies — the contract, and every policy filling every slot ---
+grep -q '^## The eight slots' "$R/stacks/README.md" || bad "ac4e: stacks/README.md missing the slot contract"
+for pol in "$R"/stacks/*.md; do
+  [ "$(basename "$pol")" = "README.md" ] && continue
+  id=$(basename "$pol" .md)
+  for slot in "## 1. Source and build units" "## 2. Carrying mechanisms" \
+              "## 3. Built-unit list" "## 4. Shipped output form" \
+              "## 5. Side-car inputs" "## 6. Build and ship commands" \
+              "## 7. Smoke launch" "## 8. Upgrade hazards"; do
+    grep -qF "$slot" "$pol" || bad "ac4e: policy '$id' missing slot '$slot'"
+  done
+done
+# the config template's policy must exist under stacks/
+pol=$(grep -E '^  policy: ' "$R/templates/omh.config.yaml" | head -1 | sed -E 's/.*policy:[[:space:]]*([^#[:space:]]+).*/\1/')
+[ -f "$R/stacks/$pol.md" ] || bad "ac4e: config template names policy '$pol' but stacks/$pol.md is missing"
+grep -q 'stack.policy' "$R/templates/omh.config.yaml" || bad "ac4e: config template missing stack.policy"
+
 # --- AC-5: example purity — no real-world strings from the source run ---
 hits=$(grep -rniE "fxpa|gbpusd|ta-lib|irisskin|2ec9f28" "$R/examples/stockplot" 2>/dev/null)
 [ -n "$hits" ] && { say "FAIL ac5: real-world strings leaked into the fictional example:"; say "$hits"; fail=1; }
@@ -88,7 +109,8 @@ grep -q 'E7' "$R/examples/stockplot/close-upg-1.md" || bad "ac5b: example close 
 
 # --- AC-neutrality: runtime-neutral vocabulary (adapters/ excluded) ---
 hits=$(grep -rnE "DSH|teammate|create_goal|workflow" \
-  "$R/HARNESS.md" "$R/ROLES.md" "$R/README.md" "$R/MODELS.md" "$R/templates" "$R/init" "$R/examples" 2>/dev/null)
+  "$R/HARNESS.md" "$R/ROLES.md" "$R/README.md" "$R/MODELS.md" "$R/templates" "$R/init" \
+  "$R/examples" "$R/stacks" 2>/dev/null)
 [ -n "$hits" ] && { say "FAIL neutrality: runtime terms outside upgrade adapters:"; say "$hits"; fail=1; }
 
 if [ $fail -eq 0 ]; then say "OK: upgrade check green"; fi

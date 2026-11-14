@@ -72,12 +72,12 @@ One per census K-row — the mechanism that puts the input where the app reads i
 
 | Census row | Input | Carrying mechanism |
 |---|---|---|
-| K-1 | <input> | <resource manifest entry / install layout / copy step / embed directive> |
+| K-1 | <input> | <carrying mechanism — from the stack policy> |
 
 ### Machine-audit commands
 
 The exact commands P5a runs, with expected outputs inline (status empty; changed-file set;
-per-file numstat; census/compiled-unit list equality; shipped contents vs K-rows):
+per-file numstat; census/built-unit list equality (per the stack policy); shipped contents vs K-rows):
 
 ```bash
 <command>   # expected: <exact output>
