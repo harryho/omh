@@ -23,7 +23,7 @@ for d in harnesses/*/; do
   done
   grep -q "$id" README.md || bad "family: index README does not list harness '$id'"
 done
-[ -d harnesses/rewapp ] || bad "family: harnesses/rewapp missing"
+[ -d harnesses/rewrite ] || bad "family: harnesses/rewrite missing"
 
 # --- root purity: no role contracts, pipeline phases, or escalations in root law docs ---
 hits=$(grep -rnE "Architect|Builder|Independent tester|P1\.5|P4\.5|escalation" \

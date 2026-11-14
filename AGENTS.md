@@ -12,10 +12,10 @@ Keep this file short and binding. Depth lives in the documents below — read th
 | Family index: which harnesses exist, adopting one, adding one | [README.md](README.md) |
 | Shared law: binding rules (two-layer, never-invent, evidence) | [RULES.md](RULES.md) |
 | Shared law: model pairs, validator contract | [MODELS.md](MODELS.md) |
-| rewapp: pipeline, roles, templates, init, example | [harnesses/rewapp/README.md](harnesses/rewapp/README.md) |
+| rewrite: pipeline, roles, templates, init, example | [harnesses/rewrite/README.md](harnesses/rewrite/README.md) |
 | Config validator + family checks | [tools/validate-config.sh](tools/validate-config.sh) |
 | Skill router | [skill/SKILL.md](skill/SKILL.md) |
-| A worked spec → plan → review → test → close set | [harnesses/rewapp/examples/ledgerlite/](harnesses/rewapp/examples/ledgerlite/) |
+| A worked spec → plan → review → test → close set | [harnesses/rewrite/examples/ledgerlite/](harnesses/rewrite/examples/ledgerlite/) |
 
 ## Hard rules (binding)
 

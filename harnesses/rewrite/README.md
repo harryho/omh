@@ -1,4 +1,4 @@
-# rewapp — the app-rewrite harness
+# rewrite — the app-rewrite harness
 
 First member of the **omh** harness family ("oh my harness"). A runtime-neutral rewrite harness:
 the process, roles, templates, and checks a rewrite needs — desktop→web, desktop→mobile, or a

@@ -1,6 +1,6 @@
 ---
 name: omh
-description: Run an omh-family harness — start a rewrite with rewapp, scaffold a harness into a repo, or continue a milestone. Use when the user says "start a rewrite", "scaffold omh", "run the omh pipeline", "use rewapp", or asks how a project's harness roles proceed.
+description: Run an omh-family harness — start a rewrite with rewrite, scaffold a harness into a repo, or continue a milestone. Use when the user says "start a rewrite", "scaffold omh", "run the omh pipeline", "use rewrite", or asks how a project's harness roles proceed.
 ---
 
 # omh — router

@@ -10,11 +10,11 @@ differ between loops.
 
 ## Start here
 
-1. **Pick a harness** from the table below — `rewapp` is the only one today.
-2. **Open its README** — [`harnesses/rewapp/README.md`](harnesses/rewapp/README.md) — for the
+1. **Pick a harness** from the table below — `rewrite` is the only one today.
+2. **Open its README** — [`harnesses/rewrite/README.md`](harnesses/rewrite/README.md) — for the
    loop and who does what.
 3. **Adopt it in a target repo:** an agent runs
-   [`harnesses/rewapp/init/INIT.md`](harnesses/rewapp/init/INIT.md), answers a short
+   [`harnesses/rewrite/init/INIT.md`](harnesses/rewrite/init/INIT.md), answers a short
    questionnaire, and scaffolds `omh.config.yaml`, the notes tree, and a flat vendored copy at
    `omh/`.
 4. **Read the shared law** before the first milestone: [`RULES.md`](RULES.md) and
@@ -24,7 +24,7 @@ differ between loops.
 
 | harness | purpose | maturity | entry |
 |---|---|---|---|
-| **rewapp** | rewrite an existing app to a new target — desktop→web, desktop→mobile, stack swap | v0.1.1 — shipped | [`harnesses/rewapp/README.md`](harnesses/rewapp/README.md) |
+| **rewrite** | rewrite an existing app to a new target — desktop→web, desktop→mobile, stack swap | v0.1.1 — shipped | [`harnesses/rewrite/README.md`](harnesses/rewrite/README.md) |
 
 ## Core idea (30 seconds)
 
@@ -41,12 +41,12 @@ differ between loops.
 |---|---|
 | Know the binding rules | [`RULES.md`](RULES.md) |
 | Configure models / understand independence | [`MODELS.md`](MODELS.md) |
-| Understand the loop, gates and hard stops | [`harnesses/rewapp/HARNESS.md`](harnesses/rewapp/HARNESS.md) |
-| Know what each role may and may not do | [`harnesses/rewapp/ROLES.md`](harnesses/rewapp/ROLES.md) |
-| Scaffold a new project | [`harnesses/rewapp/init/INIT.md`](harnesses/rewapp/init/INIT.md) |
+| Understand the loop, gates and hard stops | [`harnesses/rewrite/HARNESS.md`](harnesses/rewrite/HARNESS.md) |
+| Know what each role may and may not do | [`harnesses/rewrite/ROLES.md`](harnesses/rewrite/ROLES.md) |
+| Scaffold a new project | [`harnesses/rewrite/init/INIT.md`](harnesses/rewrite/init/INIT.md) |
 | Validate a config | [`tools/validate-config.sh`](tools/validate-config.sh) |
-| Run the roles on a specific agent runtime | [`harnesses/rewapp/adapters/`](harnesses/rewapp/adapters/) |
-| See a worked example end to end | [`harnesses/rewapp/examples/ledgerlite/`](harnesses/rewapp/examples/ledgerlite/) |
+| Run the roles on a specific agent runtime | [`harnesses/rewrite/adapters/`](harnesses/rewrite/adapters/) |
+| See a worked example end to end | [`harnesses/rewrite/examples/ledgerlite/`](harnesses/rewrite/examples/ledgerlite/) |
 
 ## Shared law (every harness repeats it verbatim in its own MODELS.md)
 

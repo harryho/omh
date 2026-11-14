@@ -41,7 +41,7 @@ that project — after being recorded in the decisions register, never silently.
 ## Clarifications law
 
 - The executing role asks the authoring role when a plan step is ambiguous or reality diverges
-  from the plan. (Each harness names its roles; rewapp's are B asks A.)
+  from the plan. (Each harness names its roles; rewrite's are B asks A.)
 - The authoring role answers; the answer is **binding** and is recorded in the plan's
   Clarifications appendix: question, answer, date, sections affected.
 - Asking is always in scope. Guessing is never in scope. An executor who guesses where a
