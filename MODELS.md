@@ -8,20 +8,28 @@ harness appends its own preset tables to its self-contained copy (see `harnesses
 - Roles are configured as `{ provider, model }` pairs. A bare model name is rejected at
   validation: the same model id can exist on multiple routes with different cost, context or
   modality — the pair is the unambiguous identifier.
-- Config lines are exactly `A: { provider: <p>, model: <m> }` — one per role; that shape is what
-  the validator parses.
+- Config lines are exactly `A: { provider: <p>, model: <m>, type: <t> }` — one per role; that
+  shape is what the validator parses. `type:` is optional on family default letters (A planner,
+  B builder, C/D reviewer, E verifier) and required on any other letter; the vocabulary is
+  `planner | builder | reviewer | verifier`. Role letters are harness-composed; an optional
+  `independence: <X-Y>[, <X-Y>…]` line adds hard pairs beyond the builder rule.
 
 ## Validator contract
 
-`tools/validate-config.sh <config>` — schema v2 — dependency-free; run it after any role change:
+`tools/validate-config.sh <config>` — schema v3 (an `omh: v2` header reads as legacy
+letter-default roles) — dependency-free; run it after any role change:
 
 | Check | Result |
 |---|---|
-| `omh: v2` header or `harness: <id>` missing/malformed | **error**, exit 1 |
-| C, D or E model == B model | **error**, exit 1 — fix before launch |
+| `omh: v2`/`omh: v3` header or `harness: <id>` missing/malformed | **error**, exit 1 |
 | Missing/malformed role line, empty provider or model | **error**, exit 1 |
-| Same model on a pair not involving B (A=C, C=E, …) | warning — logged, proceeds |
-| Same provider on any pair involving C, D or E | warning — logged, proceeds |
+| Type missing on a non-default letter, or an unknown type | **error**, exit 1 |
+| Zero builders, or more than one builder-typed role | **error**, exit 1 |
+| No control role (reviewer/verifier) declared | **error**, exit 1 |
+| Reviewer/verifier model == builder model | **error**, exit 1 — fix before launch |
+| `independence:` pair names unknown letters, or its pair's models equal | **error**, exit 1 |
+| Same model on a pair with no builder in it | warning — logged, proceeds |
+| Same provider on any pair involving a control role | warning — logged, proceeds |
 
 Warnings exist to be read: a project that accepts a warning records it in the decisions register.
 
