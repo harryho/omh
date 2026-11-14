@@ -1,0 +1,38 @@
+# omh.config.yaml — stockplot upgrade UPG-1 (schema v3)
+omh: v3
+harness: insitu
+project: stockplot
+source_contract:
+  kind: legacy-app
+  inventory: notes/parity-census.md
+stack:
+  from: "WinForms .NET Framework 4.8 desktop"
+  to: ".NET 10 (net10.0-windows)"
+gates:                        # direction is human by law — not settable here
+  spec: human
+  plan: auto
+  footprint: auto
+  smoke: auto
+  close: human
+escalations:                  # hard stops in every mode; edit only with a dated register entry
+  - blocking-decision
+  - fail-after-one-fix-round
+  - drift-1.5x
+  - unexplained-tree
+  - footprint-violation
+  - major-or-blocker-deviation
+  - parity-gap-outside-census
+preset: max-diversity
+roles:
+  A: { provider: zai-anthropic, model: glm-5.3, type: planner }
+  B: { provider: zai-anthropic, model: glm-5.3-flash, type: builder }
+  R: { provider: kimi, model: kimi-k2.7-code, type: reviewer }
+  V: { provider: minimax-anthropic, model: MiniMax-M3.1-Flash, type: verifier }
+independence: R-B, V-B, V-R   # three-vendor law — hard pairs, validator-enforced
+verification:
+  - "dotnet build upgrade/StockPlot.sln -c Release"          # AC-1
+  - "dotnet run --project upgrade/ProbeMath -c Release -- samples/acme.day"   # AC-2 (C-2)
+  - "dotnet publish upgrade/StockPlot -c Release -o publish -r win-x64 --self-contained false"
+  - "test -d publish/data/acme/local && test -f publish/MathFin.dll"          # AC-3 (K-1, K-2)
+  - "powershell -Command \"(Get-Process StockPlot).MainWindowTitle\""          # AC-4 support
+ledger: true

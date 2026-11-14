@@ -32,6 +32,10 @@ Result: <PASS / FAIL / notes>
 
 Result: <…>
 
+<Lesson from run UPG-1 (see the insitu example): where a capability depends on locale, settings
+or environment, repeat its step once under a varied setting (e.g. a non-default locale) — a
+walkthrough that passed one way can still regress another.>
+
 <Repeat per walkthrough row. Also demonstrate any `dead-in-source` rows worth showing the
 human (e.g. the menu item that no-ops in the original and must still no-op), so "preserved
 faithfully" is seen, not just cited.>
