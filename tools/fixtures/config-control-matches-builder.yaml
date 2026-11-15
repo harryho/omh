@@ -1,0 +1,11 @@
+# AC-2 boundary fixture: a typed control role on the builder's exact model (schema v3).
+# validate-config.sh WARNS on this — exit 0, one WARNING naming V and B. Best practice is
+# a different model (ideally a different vendor); proceeding needs recorded human consent.
+omh: v3
+harness: upgrade
+project: fixture-control-matches-builder
+roles:
+  A: { provider: zai-anthropic, model: glm-5.3, type: planner }
+  B: { provider: zai-anthropic, model: glm-5.3-flash, type: builder }
+  R: { provider: kimi, model: kimi-k2.7-code, type: reviewer }
+  V: { provider: opencode, model: glm-5.3-flash, type: verifier }

@@ -7,9 +7,11 @@
 #   - missing type falls back to family letter defaults (A planner, B builder,
 #     C/D reviewer, E verifier); any other letter without a type is an error
 # Errors (exit 1): schema/harness/role problems; unknown or missing type; zero or
-#   multiple builders; no control role; a reviewer/verifier sharing the builder's
-#   model; an `independence:` pair with equal models or unknown letters.
-# Warnings (stdout, exit 0): same model on a pair with no builder in it; same
+#   multiple builders; no control role; an `independence:` pair with equal models or
+#   unknown letters.
+# Warnings (stdout, exit 0): a reviewer/verifier sharing the builder's model — best
+#   practice is a different model, ideally a different vendor, and proceeding needs
+#   the human's recorded consent; same model on a pair with no builder in it; same
 #   provider on any pair involving a control role. Availability is NOT checked here
 #   (root MODELS.md route-churn).
 set -u
@@ -67,7 +69,9 @@ done
 rc=0
 for r in "${order[@]}"; do
   case "${T[$r]}" in reviewer|verifier)
-    if [ "${M[$r]}" = "${M[$B]}" ]; then echo "ERROR: independence: $r (${T[$r]}) model == builder $B model (${M[$B]})"; rc=1; fi
+    if [ "${M[$r]}" = "${M[$B]}" ]; then
+      echo "WARNING: independence: $r (${T[$r]}) model == builder $B model (${M[$B]}) — best practice is a different model, ideally a different vendor; proceeding needs the human's recorded consent"
+    fi
   ;; esac
 done
 
@@ -100,5 +104,5 @@ for ((i=0; i<n; i++)); do
   done
 done
 
-[ $rc -eq 0 ] && echo "OK: harness '$harness' — independence constraints satisfied"
+[ $rc -eq 0 ] && echo "OK: harness '$harness' — declared independence pairs satisfied; accepted warnings go in the decisions register"
 exit $rc
