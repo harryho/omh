@@ -23,7 +23,8 @@ check   (A)     review  (A)     review  (B)     gates   (parallel)         note 
 | **P2.5 — C plan review** | plan drafted | C checks the plan against the spec it already reviewed: every AC has a proving task; no step contradicts the spec; the test story is real; the human gate for the plan (if set) is satisfied | plan approved per gates config |
 | **P3 — build (B)** | approved plan | B executes task by task: failing test → run it → minimal implementation → green → commit; divergence stops the line for a clarification; estimate drift >1.5× the plan is escalation E3 | every task committed; local checks green |
 | **P4 — machine verify** | build complete | every command in config `verification:` runs to green; anything unverifiable is listed explicitly — an unexplained silent skip is a defect | all gates green, or unverified list accepted |
-| **P4.5 — D review ∥ E test** | P4 exit | D (code review) and E (independent test) launch in parallel, fresh, independent; both block close; E never reads the plan or B's tests | both verdicts recorded; deviations accepted per gates |
+| **P4.5 — D review ∥ E test** | P4 exit | D (code review) and E (independent test) launch in parallel, fresh from their
+  declared intake, mutually blind; both block close; E never reads the plan or B's tests | both verdicts recorded; deviations accepted per gates |
 | **P5 — close** | both verdicts in | AC walk with evidence pointers; deviations resolved (minor self-accepted by D and logged; major/blocker → E6); close note written from the template; digest for the human | close note committed; milestone Shipped |
 | **P6 — next** | P5 exit | name the next milestone from the inventory; re-check open decisions; re-enter at P0 | next milestone entered |
 

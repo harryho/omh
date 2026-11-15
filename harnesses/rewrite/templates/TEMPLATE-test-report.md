@@ -10,7 +10,7 @@ reviewer's report — independence is the entire value of this role.
 |---|---|
 | **Milestone** | M<N> — <name> |
 | **Spec (only source read)** | `notes/specs/SPEC-M<N>-*.md` |
-| **Tester** | <role> · <provider> · <model> — **must differ from builder B's model** |
+| **Tester** | <role> · <provider> · <model> — **should differ from builder B's model** (same model or vendor only on recorded consent) |
 | **Builder** | <provider> · <model> |
 | **Date** | <date> |
 | **Verdict** | **PASS** / **FAIL** (test failures block close) |

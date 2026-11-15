@@ -25,13 +25,16 @@ Keep this file short and binding. Depth lives in the documents below — read th
 2. **Spec → plan → human approval → build.** One milestone per objective.
 3. **Decisions are contracts.** A decision that changes is edited in place with a date — never
    silently replaced by a different default. Preset rows live in each harness's `MODELS.md`.
-4. **Independence constraint** (validator-enforced, no exceptions without a dated register entry):
-   the review/test roles must each run a model different from the build role's.
-5. **Commit per task**, conventional commits scoped to the milestone. `main` is the only branch
+4. **Independence best practice:** the review/test roles run a model different from the build
+   role's — ideally a different vendor. The validator warns on a shared model or vendor;
+   proceeding is fine only with the human's consent, recorded like any accepted warning.
+5. **Fresh intake:** every role launches with a fresh context holding only what its harness
+   declares as that role's intake — no role inherits another role's conversation.
+6. **Commit per task**, conventional commits scoped to the milestone. `main` is the only branch
    until a remote exists.
-6. **Label non-obvious claims** verified or inferred; the critical fact is inlined, references
+7. **Label non-obvious claims** verified or inferred; the critical fact is inlined, references
    accompany it.
-7. **Root purity:** root docs define no role contracts or loop phases; harness-specific content
+8. **Root purity:** root docs define no role contracts or loop phases; harness-specific content
    lives under `harnesses/<id>/` (enforced by `tools/check-family.sh`).
 
 Internal working notes live in `notes/` and are git-ignored — they are not part of the shipped

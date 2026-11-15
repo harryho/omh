@@ -12,7 +12,8 @@ harness appends its own preset tables to its self-contained copy (see `harnesses
   shape is what the validator parses. `type:` is optional on family default letters (A planner,
   B builder, C/D reviewer, E verifier) and required on any other letter; the vocabulary is
   `planner | builder | reviewer | verifier`. Role letters are harness-composed; an optional
-  `independence: <X-Y>[, <X-Y>…]` line adds hard pairs beyond the builder rule.
+  `independence: <X-Y>[, <X-Y>…]` line declares hard pairs — a harness or project that needs
+  stricter than the recommendation uses it.
 
 ## Validator contract
 
@@ -26,7 +27,7 @@ letter-default roles) — dependency-free; run it after any role change:
 | Type missing on a non-default letter, or an unknown type | **error**, exit 1 |
 | Zero builders, or more than one builder-typed role | **error**, exit 1 |
 | No control role (reviewer/verifier) declared | **error**, exit 1 |
-| Reviewer/verifier model == builder model | **error**, exit 1 — fix before launch |
+| Reviewer/verifier model == builder model | warning — best practice is a different model, ideally a different vendor; proceed on recorded consent |
 | `independence:` pair names unknown letters, or its pair's models equal | **error**, exit 1 |
 | Same model on a pair with no builder in it | warning — logged, proceeds |
 | Same provider on any pair involving a control role | warning — logged, proceeds |
@@ -42,5 +43,6 @@ unavailable, the launch layer reports which pair failed, and init offers the alt
 `minimax-anthropic` · MiniMax-M3[1m] / MiniMax-M3.1-Flash, `mimo` · mimo-v2.6-flash /
 mimo-v2.6-pro, `deepseek-anthropic` · deepseek-flash[1m] / deepseek-v4-pro, `opencode` routes
 (`deepseek-v4-pro`, `deepseek-v4.1-flash`, `glm-5.3`, `glm-5.3-flash`, `kimi-k2.7-code`,
-`kimi-k3`, `minimax-m3`, …). Any substitution must still satisfy the validator's independence
-errors.
+`kimi-k3`, `minimax-m3`, …). Any substitution must still satisfy the validator's errors —
+declared `independence:` pairs always hold; a substitution landing a control role on the
+builder's model or vendor is a warning that needs recorded consent.

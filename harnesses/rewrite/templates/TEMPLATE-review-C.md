@@ -11,7 +11,7 @@ One file per review round; re-reviews get a new dated file; old reports are neve
 | **Milestone** | M<N> — <name> |
 | **Spec** | `notes/specs/SPEC-M<N>-*.md` (status at review: <…>) |
 | **Plan** | `notes/specs/plans/M<N>-plan.md` (if written) |
-| **Reviewer** | <role> · <provider> · <model> — must differ from builder B |
+| **Reviewer** | <role> · <provider> · <model> — should differ from builder B (same model or vendor only on recorded consent) |
 | **Implementer** | <provider> · <model> (B, for reference) |
 | **Date** | <date> |
 | **Verdict** | **PASS** / **PASS-WITH-DEVIATIONS** / **FAIL** |

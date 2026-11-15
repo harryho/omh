@@ -42,7 +42,8 @@ model · date) — accountability is per document, not per project.
   steps that contradict the spec; scope the inventory never authorized; a plan with no test story.
 - **Verdict:** PASS · PASS-WITH-DEVIATIONS · FAIL. FAIL blocks entry to build. Re-reviews go in a
   new dated file; an old report is never edited.
-- **Model:** must differ from B's (validator-enforced).
+- **Model:** should differ from B's — ideally a different vendor (the validator warns; same
+  model or vendor only with the human's recorded consent).
 
 ## D — Code reviewer (post-build)
 
@@ -55,7 +56,8 @@ model · date) — accountability is per document, not per project.
 - **Deviations:** minor ones may be self-accepted and logged; any major or blocker deviation is an
   escalation to the human.
 - **Verdict:** PASS · PASS-WITH-DEVIATIONS · FAIL. FAIL blocks close and returns the work to B.
-- **Model:** must differ from B's (validator-enforced).
+- **Model:** should differ from B's — ideally a different vendor (the validator warns; same
+  model or vendor only with the human's recorded consent).
 
 ## E — Independent tester (post-build, parallel with D)
 
@@ -65,7 +67,8 @@ model · date) — accountability is per document, not per project.
 - **Outputs:** an own test suite + evidence report; tests worth keeping are folded into the main
   suite at close, not before (independence first, consolidation after).
 - **Verdict:** test failures block close.
-- **Model:** must differ from B's (validator-enforced). Being also C's or D's model is a logged
+- **Model:** should differ from B's — ideally a different vendor (the validator warns; same
+  model or vendor only with the human's recorded consent). Being also C's or D's model is a logged
   warning, not an error.
 
 ## Human
@@ -75,13 +78,28 @@ model · date) — accountability is per document, not per project.
   escalations put in front of them.
 - Accepts or rejects every PASS-WITH-DEVIATIONS deviation list before close completes.
 
+## Intake — the only context a role launches with
+
+Every role launches fresh: no inherited conversation, no other role's reasoning. Its context is
+its intake and nothing else; reading outside the intake is a defect. Launch prompts carry paths
+and protocol, never conclusions.
+
+| Role | Intake |
+|---|---|
+| A | the source inventory, the previous milestone's close note, open decisions |
+| B | the approved plan, task by task |
+| C | the spec, then the plan |
+| D | the spec, the plan, the built code |
+| E | the spec — nothing else |
+
 ## Independence matrix
 
 What the config validator enforces (run it after any role change):
 
 | Check | Result |
 |---|---|
-| C, D or E model == B model | **error** — launch refused |
+| C, D or E model == B model | warning — best practice differs; proceed only with recorded consent |
+| Declared `independence:` pair violated | **error** — launch refused |
 | Malformed or missing role line in config | **error** |
 | Same model on a pair not involving B (e.g. A=C, C=E) | warning — logged, launch proceeds |
 | Same provider on any pair involving C, D or E | warning — logged, launch proceeds |

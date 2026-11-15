@@ -50,15 +50,27 @@ that project — after being recorded in the decisions register, never silently.
 
 ## Independence law
 
-- Every harness declares exactly one **builder** role; every **control role** (the reviewer and
-  verifier types) runs a **different model** from the builder's. This is validator-enforced;
-  the launch layer must refuse a config that violates it. Role letters are harness-owned — the
-  family law binds the types, not the letters. A harness may declare extra hard pairs in its
-  config `independence:` line.
-- An exception requires a dated decisions-register entry naming who accepted it and why.
-- Same-model or same-provider pairs elsewhere on the review/test path are flagged warnings, not
-  errors — the ledger records them so a human can weigh them.
+- Every harness declares exactly one **builder** role. **Best practice:** every **control role**
+  (the reviewer and verifier types) runs a **different model** from the builder's — ideally a
+  different vendor. The validator flags a shared control/builder model as a warning; it is a
+  recommendation, not a prohibition. Role letters are harness-owned — the family law binds the
+  types, not the letters.
+- A harness or project that needs hard pairs declares them in its config `independence:` line;
+  declared pairs stay validator errors.
+- Same-model or same-provider pairs anywhere on the review/test path are flagged warnings. A
+  project proceeds on a warning only with the human's recorded consent — who accepted it, and
+  when — in the decisions register.
 - Every produced document header records the role, provider and model that wrote it.
+
+## Intake law
+
+- Every role launches with a **fresh context** seeded only by its harness-declared **intake** —
+  the per-role list of documents and read order in that harness's role contracts — plus a
+  launch prompt that carries paths and protocol, never conclusions.
+- No role inherits another role's conversation; the authoring and building roles get fresh
+  launches like every other role. A role reading outside its intake is a defect.
+- A coordinating session launches roles, enforces gates and assembles records — it authors
+  nothing analytical.
 
 ## Changing a decision
 

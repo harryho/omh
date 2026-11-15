@@ -7,8 +7,9 @@ process: built, independently reviewed, closed).
 
 Five accountable roles instead of one agent improvising: **A** writes spec + plan, **B** builds
 (asking A, never guessing), **C** reviews the spec+plan before any code exists, **D** reviews
-the built code after, **E** tests independently from the spec alone. C, D, E never share B's
-model — the config validator refuses a setup where they would.
+the built code after, **E** tests independently from the spec alone. Every role launches fresh
+on its declared intake; the model spread — C, D, E off B's model — is the best practice: the
+validator warns, and recorded consent lets a project proceed.
 
 ```
         ┌────────┐  spec/plan   ┌────────┐
@@ -52,7 +53,8 @@ parity, major deviation).
 ## Model presets
 
 Three presets (max-diversity / balanced / budget), each overridable per role; see `MODELS.md`.
-The invariant in all of them: C, D, E never share B's model.
+The recommendation in all of them: C, D and E off B's model — the validator warns, and recorded
+consent lets a project proceed.
 
 ## Out of scope for v0.1
 

@@ -13,10 +13,12 @@ proof). Part-rewrites and reverts are legitimate declared means; undeclared drif
 
 Four accountable roles instead of one agent improvising: **A** writes the design of record, the
 parity census, and the plan; **B** builds in a clone on a branch (asking A, never guessing);
-**R** reviews twice — the plan before build, the diff after — one model across both passes;
-**V** verifies blind, re-running every command with nothing but the acceptance criteria and the
-commands themselves. R and V never share B's model, and never each other's — the config
-validator refuses a setup where they would.
+**R** reviews twice — the plan before build, the diff after — one model across both passes, with
+the validator warning on a shared model and upgrade's declared pairs (`R-B, V-B, V-R`) keeping it
+enforced; **V** verifies blind, re-running every command with nothing but the acceptance criteria and
+the commands themselves. R and V share no model with B or each other — upgrade declares the
+three-vendor law as hard pairs, so the config validator refuses a setup where they would — and
+every role launches fresh on its declared intake.
 
 ```
         ┌────────────── human gates: direction, spec, close ────────────────────────────┐

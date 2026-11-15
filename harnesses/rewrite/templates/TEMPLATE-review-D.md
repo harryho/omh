@@ -11,7 +11,7 @@ dated file; old reports are never edited.
 | **Milestone** | M<N> — <name> |
 | **Spec** | `notes/specs/SPEC-M<N>-*.md` |
 | **Plan** | `notes/specs/plans/M<N>-plan.md` |
-| **Reviewer** | <role> · <provider> · <model> — **must differ from builder B's model** |
+| **Reviewer** | <role> · <provider> · <model> — **should differ from builder B's model** (same model or vendor only on recorded consent) |
 | **Builder** | <provider> · <model> |
 | **Reviewed range** | `<from>..<to>` |
 | **Date** | <date> |
