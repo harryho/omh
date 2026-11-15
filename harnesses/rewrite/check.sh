@@ -27,13 +27,16 @@ for p in \
   "$R/examples/ledgerlite/close-LL-1.md"; do
   [ -f "$p" ] || bad "ac1: missing $p"
 done
-grep -q "v0.1.1" "$R/VERSION" || bad "ac1: rewrite VERSION is not v0.1.1"
+grep -q "v0.1.2" "$R/VERSION" || bad "ac1: rewrite VERSION is not v0.1.2"
 
 # --- AC-3: two-layer law markers in templates ---
 grep -q "no file paths" "$R/templates/TEMPLATE-spec.md" || bad "ac3: TEMPLATE-spec.md missing 'no file paths'"
 grep -q "no code" "$R/templates/TEMPLATE-spec.md" || bad "ac3: TEMPLATE-spec.md missing 'no code'"
 grep -q "Test story" "$R/templates/TEMPLATE-plan.md" || bad "ac3: TEMPLATE-plan.md missing test story"
 grep -q "Clarifications" "$R/templates/TEMPLATE-plan.md" || bad "ac3: TEMPLATE-plan.md missing Clarifications"
+
+# --- law: ROLES.md must include the Intake section ---
+grep -q "## Intake" "$R/ROLES.md" || bad "law: ROLES.md missing the Intake section"
 
 # --- AC-4: preset rows byte-equal to rewrite's self-contained MODELS.md ---
 grep -qF '| **max-diversity** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3[1m] | `kimi` · kimi-k2.7-code | `minimax-anthropic` · MiniMax-M3.1-Flash |' "$R/MODELS.md" \

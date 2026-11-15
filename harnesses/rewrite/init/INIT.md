@@ -60,6 +60,12 @@ role, re-runs the validator, and returns here. Do not write the config, do not s
 move on to gates until every row is confirmed. Record each confirmation (role, pair, who
 confirmed, date) in the init log.
 
+**Same-model or same-vendor consent.** If any control role (C, D or E) shares the builder's
+model or provider, ask it explicitly: "`<role>` shares `<model/provider>` with B — the
+recommendation is a different model, ideally a different vendor, and the validator warns.
+Accept and record, or change the pair?" Only an explicit acceptance proceeds; record it in the
+init log (role, pair, who accepted, date) — it is the decisions-register seed for that warning.
+
 ## 6. Gates
 
 Ask: "Fully autonomous, or does any gate pause for you?" Default: all `auto`

@@ -8,18 +8,20 @@ reading here.
 
 | omh role | DSH mechanism |
 |---|---|
-| **A — Architect** | the session lead, or a durable teammate (`spawn_teammate`) doing spec/plan work |
-| **B — Builder** | fresh subagent per plan task (`subagent_fork` / per-task dispatch) for independence between tasks, or inline execution for small plans |
+| **A — Architect** | a fresh agent per milestone span (`workflow` agent with a model override, or a new session); the brief carries only A's intake paths — inventory, previous close note, open decisions |
+| **B — Builder** | a fresh agent per plan task (`workflow` agent; model override optional) — never inline in the orchestrating session and never a context-inheriting dispatch; the task brief carries only that task's plan section |
+| **Orchestrator** | the lead session itself: launches roles, enforces gates, assembles the close digest; authors nothing analytical |
 | **C — Spec reviewer** | fresh-context agent with a model override — via the `workflow` tool's per-agent `provider`/`model` options |
 | **D — Code reviewer** | same as C, launched in parallel |
 | **E — Independent tester** | same as C, launched in parallel; prompt grants spec path only |
 | **Human gates** | a gate flipped to `human` pauses the phase; surface it with a question tool call and `present` the artifact awaiting approval |
 | **Milestone objective** | `create_goal` once per milestone, objective = spec id through its acceptance gate; propose a round cap |
 
-Why fresh-context agents for C/D/E: a subagent launched with an override starts with **no**
-inherited conversation — it has not been persuaded by the implementer's reasoning. Combined with
-a different model (validator-enforced), that is the whole independence mechanism. A teammate that
-inherits context is fine for A/B and wrong for C/D/E.
+Why fresh for every role: a role that inherits the orchestrator's conversation has already been
+persuaded by the reasoning it is supposed to check. Fresh launch plus the role's declared intake
+is the whole independence mechanism (the intake law — RULES.md); a different model from the
+builder's is the best practice on top — the validator warns, and recorded consent lets a
+project proceed without it.
 
 ## Launch-prompt neutrality
 

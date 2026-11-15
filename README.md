@@ -1,9 +1,10 @@
 # omh — oh my harness
 
-omh runs agents through a spec-driven rewrite loop: settle **what and why** in a spec, review it
-on a different model, settle **how** in a plan, build it, then review and test it again on models
-that never saw the build. The point is independence — the reviewer and the tester never run the
-builder's model, so nobody grades their own homework.
+omh runs agents through a spec-driven rewrite loop: settle **what and why** in a spec, review it,
+settle **how** in a plan, build it, then review and test it again with roles that never saw the
+build. Two laws hold the loop: every role launches fresh on the intake its harness declares for
+it, and — as a warned-and-consented best practice — the review and test roles run a model
+different from the builder's, so nobody grades their own homework.
 
 One harness is one way of running that loop. The family shares only the laws that must never
 differ between loops.
@@ -30,15 +31,20 @@ differ between loops.
 
 | harness | purpose | maturity | entry |
 |---|---|---|---|
-| **rewrite** | rewrite an existing app to a new target — desktop→web, desktop→mobile, stack swap | v0.1.1 — shipped | [`harnesses/rewrite/README.md`](harnesses/rewrite/README.md) |
+| **rewrite** | rewrite an existing app to a new target — desktop→web, desktop→mobile, stack swap | v0.1.2 — shipped | [`harnesses/rewrite/README.md`](harnesses/rewrite/README.md) |
 | **upgrade** | upgrade an existing app or system in place to a newer LTS/runtime — behaviour-preserving, diff footprinted, parity censused | v0.1.0 — scaffold | [`harnesses/upgrade/README.md`](harnesses/upgrade/README.md) |
 
 ## Core idea (30 seconds)
 
 - **Spec-driven.** What and why are settled in a spec before anything is built; how is settled in
   a plan; only then does building start. A plan a builder must guess from is a defect.
-- **Model independence.** The review and test roles each run a **different model** from the
-  builder's — validator-enforced, so a config that violates it will not launch.
+- **Fresh intake (hard law).** Every role launches with a fresh context holding only what its
+  harness declares as that role's intake — no role inherits another role's conversation, and a
+  role reading outside its intake is a defect.
+- **Model independence (best practice).** The review and test roles each run a different model
+  from the builder's — ideally a different vendor. The validator warns on a shared model or
+  vendor; proceeding needs the human's recorded consent. A harness can still declare specific
+  pairs as hard, and upgrade does.
 - **Evidence.** Every non-obvious claim is labelled **Verified** or **Inferred** with its source;
   every verdict cites a test, a command output, or a `file:line`. "Looks right" is not a verdict.
 
@@ -61,7 +67,7 @@ differ between loops.
 
 | Law | File |
 |---|---|
-| Binding rules: two-layer spec/plan, never-invent, evidence labels, commits, clarifications, independence | [`RULES.md`](RULES.md) |
+| Binding rules: two-layer spec/plan, never-invent, evidence labels, commits, clarifications, independence, intake | [`RULES.md`](RULES.md) |
 | Model pair schema + validator contract + route-churn policy | [`MODELS.md`](MODELS.md) |
 | Config validator (schema v3) + family checks | `tools/` |
 | Thin skill router for runtime catalogs | [`skill/SKILL.md`](skill/SKILL.md) |
