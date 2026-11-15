@@ -72,8 +72,9 @@ apphost `.exe`, binding redirects) live in a policy instead of being baked into 
 ## Model presets
 
 Three presets (max-diversity / balanced / budget), each overridable per role; see `MODELS.md`.
-The invariant in all of them: R and V never share B's model, and never each other's
-(`independence: R-B, V-B, V-R`).
+The recommendation in all of them: R and V share no model with B or each other — upgrade
+declares the three-vendor law as hard pairs (`independence: R-B, V-B, V-R`), and every role
+launches fresh on its declared intake.
 
 ## upgrade or rewrite?
 

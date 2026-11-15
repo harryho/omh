@@ -32,7 +32,7 @@ differ between loops.
 | harness | purpose | maturity | entry |
 |---|---|---|---|
 | **rewrite** | rewrite an existing app to a new target — desktop→web, desktop→mobile, stack swap | v0.1.2 — shipped | [`harnesses/rewrite/README.md`](harnesses/rewrite/README.md) |
-| **upgrade** | upgrade an existing app or system in place to a newer LTS/runtime — behaviour-preserving, diff footprinted, parity censused | v0.1.0 — scaffold | [`harnesses/upgrade/README.md`](harnesses/upgrade/README.md) |
+| **upgrade** | upgrade an existing app or system in place to a newer LTS/runtime — behaviour-preserving, diff footprinted, parity censused | v0.1.1 — scaffold | [`harnesses/upgrade/README.md`](harnesses/upgrade/README.md) |
 
 ## Core idea (30 seconds)
 

@@ -59,6 +59,12 @@ Print the current roles table — role letter, pair, model — and ask the human
 row out loud. No config write, no scaffold, no further step until every row is confirmed.
 Record each confirmation (role, pair, who confirmed, date) in the init log.
 
+**Same-model or same-vendor consent.** Declared pairs (`R-B, V-B, V-R`) cannot be accepted
+away — the validator refuses them. If any warning names a shared model or provider on the
+control path, ask it explicitly: "`<pair>` shares `<model/provider>` — the recommendation is a
+different model, ideally a different vendor. Accept and record, or change the pair?" Only an
+explicit acceptance proceeds; record it in the init log (pair, who accepted, date).
+
 ## 7. Gates
 
 `direction` is human by law — not settable. Ask: "Which of the remaining gates pause for you?"

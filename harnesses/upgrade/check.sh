@@ -32,7 +32,7 @@ for p in \
   "$R/examples/stockplot/close-upg-1.md"; do
   [ -f "$p" ] || bad "ac3: missing $p"
 done
-grep -q "v0.1.0" "$R/VERSION" || bad "ac3: upgrade VERSION is not v0.1.0"
+grep -q "v0.1.1" "$R/VERSION" || bad "ac3: upgrade VERSION is not v0.1.1"
 
 # --- AC-4: law markers ---
 grep -qF 'Roles are configured as `{ provider, model }` pairs. A bare model name is rejected at' "$R/MODELS.md" \
@@ -59,6 +59,9 @@ grep -q 'Input-contract check' "$R/templates/TEMPLATE-footprint-audit.md" || bad
 grep -q 'Stack policies' "$R/HARNESS.md" || bad "ac4: HARNESS.md missing the stack-policy seam"
 grep -q 'stack.policy' "$R/HARNESS.md" || bad "ac4: HARNESS.md missing the stack.policy selector"
 grep -q 'stack.policy' "$R/init/INIT.md" || bad "ac4: INIT.md missing the stack-policy question"
+
+# --- law: ROLES.md must include the Intake section ---
+grep -q '## Intake' "$R/ROLES.md" || bad "ac4: ROLES.md missing the Intake section"
 
 # --- AC-4b: config template is schema v3 with harness id, gates, independence ---
 grep -q '^omh: v3' "$R/templates/omh.config.yaml" || bad "ac4b: config template not omh: v3"

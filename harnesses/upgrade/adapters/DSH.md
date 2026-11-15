@@ -8,8 +8,8 @@ is runtime-neutral; this file is the only place runtime vocabulary appears.
 | Role | DSH mechanic | Fresh context? | Prompt carries |
 |---|---|---|---|
 | Orchestrator | the lead session itself (you) | — | the run: launch roles, enforce gates, assemble the close note; authors nothing analytical |
-| A · Planner | dedicated teammate for the P1–P3 span (spike → design+census → plan) | yes | HARNESS phases P1–P3, templates, census contract; the original source repo path + base commit |
-| B · Builder | fresh subagent per task batch, or one durable builder for small runs | per batch (state = plan + prior commits) | the approved plan tasks only; never the census or design narrative |
+| A · Planner | a fresh dedicated teammate for the P1–P3 span — fresh context, never forked from the orchestrator's conversation | yes | HARNESS phases P1–P3, templates, census contract; the original source repo path + base commit |
+| B · Builder | a fresh agent per task batch (never a durable context-inheriting builder) | per batch (state = plan + prior commits) | the approved plan tasks only; never the census or design narrative |
 | R · Reviewer | fresh subagent with model override, launched twice | both passes fresh | pass 1: design + census + plan; pass 2: design + census + plan + branch diff; never B's evidence or V's report |
 | V · Verifier | fresh subagent with model override, launched in parallel with R pass 2 | yes | **the AC list and the plan's command block — nothing else** |
 | Human gates | `ask_user_question` / pause + `present` | — | the gate's artifact (design, close note) and the specific decision |

@@ -57,8 +57,9 @@ R reviewer, V verifier.
   output, walks every AC to a verdict.
 - **Why blind:** V is the only role that can say "the shipped artifact works" without having
   been told by the roles that built it what "works" is supposed to look like.
-- **Model:** must differ from B's (validator error) and from R's (declared pair, validator
-  error).
+- **Model:** differs from B's and from R's — upgrade declares the three-vendor law as hard
+  pairs (`R-B, V-B, V-R`, validator errors); the family recommendation is the same shape,
+  but upgrade's own declared pairs are what keep it enforced.
 
 ## Orchestrator (lead session)
 
@@ -75,18 +76,31 @@ R reviewer, V verifier.
 - Runs **one structured walkthrough session** at close from the walkthrough pack — the only
   human verification the loop requires; everything else is machine-proven before it.
 
+## Intake — the only context a role launches with
+
+Every role launches fresh: no inherited conversation, no other role's reasoning. Reading
+outside the intake is a defect; launch prompts carry paths and protocol, never conclusions.
+
+| Role | Intake |
+|---|---|
+| A | the original source + base commit, the spike evidence, open decisions |
+| B | the approved plan, task by task |
+| R pass 1 | the design + census first → own checklist → then the plan |
+| R pass 2 | the design + census + plan + the clone diff — never B's evidence or V's report |
+| V | the AC list + the plan's command block — nothing else |
+| Orchestrator | launches, gates, records; authors nothing analytical |
+
 ## Independence matrix
 
-What the config validator enforces (run it after any role change):
+What the config validator enforces for upgrade (run it after any role change):
 
 | Check | Result |
 |---|---|
-| R model == B model | **error** — launch refused |
-| V model == B model | **error** — launch refused |
+| R model == B model (declared pair `R-B`) | **error** — launch refused |
+| V model == B model (declared pair `V-B`) | **error** — launch refused |
 | V model == R model (declared pair `V-R`) | **error** — launch refused |
 | Zero or multiple builders, no control role, unknown type | **error** |
-| Same model on a pair with no builder in it | warning — logged, launch proceeds |
-| Same provider on any pair involving a control role | warning — logged, launch proceeds |
+| Undeclared same-model or same-provider pairs involving control roles | warning — logged, launch proceeds |
 
 ## Clarification protocol (B → A)
 
