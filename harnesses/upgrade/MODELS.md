@@ -66,12 +66,14 @@ unavailable, the launch layer reports which pair failed, and init offers the alt
 `minimax-anthropic` · MiniMax-M3[1m] / MiniMax-M3.1-Flash, `mimo` · mimo-v2.6-flash /
 mimo-v2.6-pro, `deepseek-anthropic` · deepseek-flash[1m] / deepseek-v4-pro, `opencode` routes
 (`deepseek-v4-pro`, `deepseek-v4.1-flash`, `glm-5.3`, `glm-5.3-flash`, `kimi-k2.7-code`,
-`(kimi-k3`, `minimax-m3`, …). Any substitution must still satisfy the validator's errors — declared `independence:` pairs always hold; a substitution landing a control role on the builder's model or vendor is a warning that needs recorded consent.
+`kimi-k3`, `minimax-m3`, …). Any substitution must still satisfy the validator's errors —
+declared `independence:` pairs always hold; a substitution landing a control role on the
+builder's model or vendor is a warning that needs recorded consent.
 
-Precedent: in the FXPA run the V route (`minimax-anthropic` · MiniMax-M3.1-Flash) failed to
-launch twice; the substitute `deepseek-anthropic` · deepseek-v4-pro fired per this policy and
-is stamped in the run's verify report. Independence held — the substitute differed from B and R
-in both model and vendor.
+Precedent (**Verified** 14 Nov 2026 — the FXPA run's verify-report stamp and close note): the V
+route (`minimax-anthropic` · MiniMax-M3.1-Flash) failed to launch twice; the substitute
+`deepseek-anthropic` · deepseek-v4-pro fired per this policy and is stamped in the run's verify
+report. Independence held — the substitute differed from B and R in both model and vendor.
 
 ## Choosing a preset
 
