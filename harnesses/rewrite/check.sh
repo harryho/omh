@@ -35,8 +35,16 @@ grep -q "no code" "$R/templates/TEMPLATE-spec.md" || bad "ac3: TEMPLATE-spec.md 
 grep -q "Test story" "$R/templates/TEMPLATE-plan.md" || bad "ac3: TEMPLATE-plan.md missing test story"
 grep -q "Clarifications" "$R/templates/TEMPLATE-plan.md" || bad "ac3: TEMPLATE-plan.md missing Clarifications"
 
-# --- law: ROLES.md must include the Intake section ---
+# --- law: ROLES.md must include the Intake section, one drifted-checkable row per role ---
 grep -q "## Intake" "$R/ROLES.md" || bad "law: ROLES.md missing the Intake section"
+for row in \
+  '| A | the source inventory' \
+  '| B | the approved plan, task by task |' \
+  '| C | the spec, then the plan |' \
+  '| D | the spec, the plan, the built code |' \
+  '| E | the spec — nothing else |'; do
+  grep -qF "$row" "$R/ROLES.md" || bad "law: intake row drifted or missing: $row"
+done
 
 # --- AC-4: preset rows byte-equal to rewrite's self-contained MODELS.md ---
 grep -qF '| **max-diversity** | `zai-anthropic` · glm-5.3 | `zai-anthropic` · glm-5.3-flash | `minimax-anthropic` · MiniMax-M3[1m] | `kimi` · kimi-k2.7-code | `minimax-anthropic` · MiniMax-M3.1-Flash |' "$R/MODELS.md" \

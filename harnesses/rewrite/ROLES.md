@@ -84,13 +84,13 @@ Every role launches fresh: no inherited conversation, no other role's reasoning.
 its intake and nothing else; reading outside the intake is a defect. Launch prompts carry paths
 and protocol, never conclusions.
 
-| Role | Intake |
-|---|---|
-| A | the source inventory, the previous milestone's close note, open decisions |
-| B | the approved plan, task by task |
-| C | the spec, then the plan |
-| D | the spec, the plan, the built code |
-| E | the spec — nothing else |
+| Role | Intake | Read order |
+|---|---|---|
+| A | the source inventory, the previous milestone's close note, open decisions | inventory first, then the close note, then the decisions register |
+| B | the approved plan, task by task | plan tasks in listed order; ask A on divergence — never guess |
+| C | the spec, then the plan | spec first — derive your own checklist from it — then the plan |
+| D | the spec, the plan, the built code | spec, then plan, then the built code; never B's session |
+| E | the spec — nothing else | the spec, top to bottom |
 
 ## Independence matrix
 

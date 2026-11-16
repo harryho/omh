@@ -60,8 +60,17 @@ grep -q 'Stack policies' "$R/HARNESS.md" || bad "ac4: HARNESS.md missing the sta
 grep -q 'stack.policy' "$R/HARNESS.md" || bad "ac4: HARNESS.md missing the stack.policy selector"
 grep -q 'stack.policy' "$R/init/INIT.md" || bad "ac4: INIT.md missing the stack-policy question"
 
-# --- law: ROLES.md must include the Intake section ---
+# --- law: ROLES.md must include the Intake section, one drifted-checkable row per role ---
 grep -q '## Intake' "$R/ROLES.md" || bad "ac4: ROLES.md missing the Intake section"
+for row in \
+  '| A | the original source + base commit' \
+  '| B | the approved plan, task by task |' \
+  '| R pass 1 | the design + census, then the plan |' \
+  '| R pass 2 | the design + census, the plan, the clone diff |' \
+  '| V | the AC list + the plan' \
+  '| Orchestrator | launches, gates, records'; do
+  grep -qF "$row" "$R/ROLES.md" || bad "ac4: intake row drifted or missing: $row"
+done
 
 # --- AC-4b: config template is schema v3 with harness id, gates, independence ---
 grep -q '^omh: v3' "$R/templates/omh.config.yaml" || bad "ac4b: config template not omh: v3"

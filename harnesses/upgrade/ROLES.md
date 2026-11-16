@@ -81,14 +81,14 @@ R reviewer, V verifier.
 Every role launches fresh: no inherited conversation, no other role's reasoning. Reading
 outside the intake is a defect; launch prompts carry paths and protocol, never conclusions.
 
-| Role | Intake |
-|---|---|
-| A | the original source + base commit, the spike evidence, open decisions |
-| B | the approved plan, task by task |
-| R pass 1 | the design + census first → own checklist → then the plan |
-| R pass 2 | the design + census + plan + the clone diff — never B's evidence or V's report |
-| V | the AC list + the plan's command block — nothing else |
-| Orchestrator | launches, gates, records; authors nothing analytical |
+| Role | Intake | Read order |
+|---|---|---|
+| A | the original source + base commit, the spike evidence, open decisions | the original source first, then the spike evidence, then the decisions register |
+| B | the approved plan, task by task | plan tasks in listed order; ask A on divergence — never guess |
+| R pass 1 | the design + census, then the plan | design + census first — derive your own checklist — then the plan |
+| R pass 2 | the design + census, the plan, the clone diff | design + census, own checklist, then the diff — never B's evidence or V's report |
+| V | the AC list + the plan's command block — nothing else | the AC list, then the command block; re-run each command yourself |
+| Orchestrator | launches, gates, records; authors nothing analytical | — |
 
 ## Independence matrix
 

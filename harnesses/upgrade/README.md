@@ -54,7 +54,7 @@ machines and roles before anything ships.
 | Stack policies: the mechanism per technology family (.NET, Java) | `stacks/` |
 | Adoption questionnaire | `init/INIT.md` |
 | Launching roles on a specific runtime | `adapters/` |
-| Worked example (fictional WinForms 4.8 → .NET 10, with an honest review FAIL) | `examples/stockplot/` |
+| Worked example (fictional WinForms 4.8 → .NET 10, with an honest review FAIL; pinned to v0.1.0 — it predates the intake law, and its role/gate mechanics are unchanged) | `examples/stockplot/` |
 
 ## Stack policies — why the harness is not .NET-specific
 

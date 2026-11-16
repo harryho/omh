@@ -87,8 +87,10 @@ Adding a stack is one file under `stacks/`. The contract is [`stacks/README.md`]
 ## Provenance — the FXPA run this was extracted from
 
 The FXPA desktop upgrade (.NET Framework → .NET 10, run 14 Nov 2026) proved the machinery and
-named the gaps. Mapping: its gates G1/G2/G3/G4 → `spec`-adjacent reviews, `footprint`, `smoke`,
-`close`; its escalations X1–X4 → E1–E4; X5 → E5; its deviation gate → E6.
+named the gaps. Every run fact below is **Verified** 14 Nov 2026 against the run's close pack
+(close note + verify report, held in the FXPA repo). Mapping: its gates G1/G2/G3/G4 →
+`spec`-adjacent reviews, `footprint`, `smoke`, `close`; its escalations X1–X4 → E1–E4; X5 → E5;
+its deviation gate → E6.
 
 What the precursor run missed, and what this harness adds:
 

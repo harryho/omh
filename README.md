@@ -21,8 +21,6 @@ differ between loops.
    questionnaire, and scaffolds `omh.config.yaml`, the notes tree, and a flat vendored copy at
    `omh/`. The copy is committed or gitignored (`vendoring: commit | ignore`, default
    **ignore**) — either way the version pin stays committed, so the record of which process
-   ran survives. The copy is committed or gitignored (`vendoring: commit | ignore`, default
-   **ignore**) — either way the version pin stays committed, so the record of which process
    ran survives.
 4. **Read the shared law** before the first milestone: [`RULES.md`](RULES.md) and
    [`MODELS.md`](MODELS.md).
