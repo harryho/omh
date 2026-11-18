@@ -1,6 +1,6 @@
 # omh — oh my harness
 
-omh runs agents through a spec-driven rewrite loop: settle **what and why** in a spec, review it,
+omh runs agents through spec-driven loops: settle **what and why** in a spec, review it,
 settle **how** in a plan, build it, then review and test it again with roles that never saw the
 build. Two laws hold the loop: every role launches fresh on the intake its harness declares for
 it, and — as a warned-and-consented best practice — the review and test roles run a model
@@ -11,13 +11,15 @@ differ between loops.
 
 ## Start here
 
-1. **Pick a harness** from the table below — `rewrite` and `upgrade` today.
-2. **Open its README** — [`harnesses/rewrite/README.md`](harnesses/rewrite/README.md) or
-   [`harnesses/upgrade/README.md`](harnesses/upgrade/README.md) — for the
+1. **Pick a harness** from the table below — `rewrite`, `upgrade` and `modernize` today.
+2. **Open its README** — [`harnesses/rewrite/README.md`](harnesses/rewrite/README.md),
+   [`harnesses/upgrade/README.md`](harnesses/upgrade/README.md) or
+   [`harnesses/modernize/README.md`](harnesses/modernize/README.md) — for the
    loop and who does what.
 3. **Adopt it in a target repo:** an agent runs the harness's `init/INIT.md`
    ([rewrite](harnesses/rewrite/init/INIT.md) ·
-   [upgrade](harnesses/upgrade/init/INIT.md)), answers a short
+   [upgrade](harnesses/upgrade/init/INIT.md) ·
+   [modernize](harnesses/modernize/init/INIT.md)), answers a short
    questionnaire, and scaffolds `omh.config.yaml`, the notes tree, and a flat vendored copy at
    `omh/`. The copy is committed or gitignored (`vendoring: commit | ignore`, default
    **ignore**) — either way the version pin stays committed, so the record of which process
@@ -31,6 +33,7 @@ differ between loops.
 |---|---|---|---|
 | **rewrite** | rewrite an existing app to a new target — desktop→web, desktop→mobile, stack swap | v0.1.2 — shipped | [`harnesses/rewrite/README.md`](harnesses/rewrite/README.md) |
 | **upgrade** | upgrade an existing app or system in place to a newer LTS/runtime — behaviour-preserving, diff footprinted, parity censused | v0.1.1 — scaffold | [`harnesses/upgrade/README.md`](harnesses/upgrade/README.md) |
+| **modernize** | raise the engineering floor of an existing app between upgrades — behaviour pins, scoped coverage, recorded benchmarks, ratchet gates; continuous until the next upgrade consumes it | v0.1.0 — scaffold | [`harnesses/modernize/README.md`](harnesses/modernize/README.md) |
 
 ## Core idea (30 seconds)
 
@@ -42,7 +45,7 @@ differ between loops.
 - **Model independence (best practice).** The review and test roles each run a different model
   from the builder's — ideally a different vendor. The validator warns on a shared model or
   vendor; proceeding needs the human's recorded consent. A harness can still declare specific
-  pairs as hard, and upgrade does.
+  pairs as hard, and upgrade and modernize do.
 - **Evidence.** Every non-obvious claim is labelled **Verified** or **Inferred** with its source;
   every verdict cites a test, a command output, or a `file:line`. "Looks right" is not a verdict.
 
@@ -54,12 +57,14 @@ differ between loops.
 | Configure models / understand independence | [`MODELS.md`](MODELS.md) |
 | Understand the rewrite loop | [`harnesses/rewrite/HARNESS.md`](harnesses/rewrite/HARNESS.md) |
 | Understand the upgrade loop | [`harnesses/upgrade/HARNESS.md`](harnesses/upgrade/HARNESS.md) |
+| Understand the modernize loop | [`harnesses/modernize/HARNESS.md`](harnesses/modernize/HARNESS.md) |
 | Pick the right stack mechanism for an upgrade | [`harnesses/upgrade/stacks/`](harnesses/upgrade/stacks/) |
-| Know what each role may and may not do | [`harnesses/rewrite/ROLES.md`](harnesses/rewrite/ROLES.md) · [`harnesses/upgrade/ROLES.md`](harnesses/upgrade/ROLES.md) |
-| Scaffold a new project | [`harnesses/rewrite/init/INIT.md`](harnesses/rewrite/init/INIT.md) · [`harnesses/upgrade/init/INIT.md`](harnesses/upgrade/init/INIT.md) |
+| Pick the right stack mechanism for modernizing | [`harnesses/modernize/stacks/`](harnesses/modernize/stacks/) |
+| Know what each role may and may not do | [`harnesses/rewrite/ROLES.md`](harnesses/rewrite/ROLES.md) · [`harnesses/upgrade/ROLES.md`](harnesses/upgrade/ROLES.md) · [`harnesses/modernize/ROLES.md`](harnesses/modernize/ROLES.md) |
+| Scaffold a new project | [`harnesses/rewrite/init/INIT.md`](harnesses/rewrite/init/INIT.md) · [`harnesses/upgrade/init/INIT.md`](harnesses/upgrade/init/INIT.md) · [`harnesses/modernize/init/INIT.md`](harnesses/modernize/init/INIT.md) |
 | Validate a config | [`tools/validate-config.sh`](tools/validate-config.sh) |
-| Run the roles on a specific agent runtime | [`harnesses/rewrite/adapters/`](harnesses/rewrite/adapters/) · [`harnesses/upgrade/adapters/`](harnesses/upgrade/adapters/) |
-| See a worked example end to end | [`harnesses/rewrite/examples/ledgerlite/`](harnesses/rewrite/examples/ledgerlite/) · [`harnesses/upgrade/examples/stockplot/`](harnesses/upgrade/examples/stockplot/) |
+| Run the roles on a specific agent runtime | [`harnesses/rewrite/adapters/`](harnesses/rewrite/adapters/) · [`harnesses/upgrade/adapters/`](harnesses/upgrade/adapters/) · [`harnesses/modernize/adapters/`](harnesses/modernize/adapters/) |
+| See a worked example end to end | [`harnesses/rewrite/examples/ledgerlite/`](harnesses/rewrite/examples/ledgerlite/) · [`harnesses/upgrade/examples/stockplot/`](harnesses/upgrade/examples/stockplot/) · [`harnesses/modernize/examples/stockpad/`](harnesses/modernize/examples/stockpad/) |
 
 ## Shared law (every harness repeats it verbatim in its own MODELS.md)
 

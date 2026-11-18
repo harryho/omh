@@ -1,0 +1,40 @@
+# omh.config.yaml — project harness configuration (schema v3)
+omh: v3
+harness: modernize             # raise the engineering floor of an existing app between upgrades
+harness_version: v0.1.0        # the vendored playbook's version — the COMMITTED pin; must match omh/VERSION
+vendoring: ignore              # ignore | commit — whether the vendored omh/ copy is in git (default: ignore)
+project: <name>
+source_contract:
+  kind: existing-tests         # existing-tests | legacy-app — what the baseline builds on
+  ledgers: notes/baseline/     # baseline report + findings + ratchet + traps live here
+stack:
+  runtime: <current runtime>   # free text, e.g. "Java 17 desktop app (Swing, Maven)" — no stack.to; modernize runs on what is
+  policy: java                 # stack policy id — see stacks/README.md (dotnet | java | kotlin | rust)
+baseline:
+  verify_command: "<the one primary gate command>"
+  verify_budget: "<recorded duration budget, e.g. 30 s>"
+  rungs: [L0, L1]              # rungs in scope for the current tranche (ladder L0–L7 in HARNESS.md)
+  slow_suites: []              # deliberately outside the primary gate: [{ name, command, cadence }]
+gates:                         # direction is human by law; ratchet_rise is human always — neither settable
+  tranche_note: human
+  close: human
+escalations:                   # hard stops in every mode; edit only with a dated register entry
+  - blocking-decision
+  - fail-after-one-fix-round
+  - finding-needs-triage       # E1 — pin and defer, or open a fix tranche; never fix inline
+  - oracle-missing             # E2 — record the capability as unpinned, with the reason
+  - metric-unrecordable        # E3 — explicit empty slot + compensating check
+  - ratchet-rise-proposed      # E4 — dated human acceptance, or the build stays red
+  - verify-mismatch            # E5 — FAIL back to M4; the mismatch goes to the traps ledger
+  - scope-drift                # E6 — hard stop; unwind to the declared scope
+  - flaky-probe                # E7 — move to the slow suite with a tracking entry
+preset: budget                 # model preset: max-diversity | balanced | budget (harness MODELS.md)
+roles:                         # one line per role — validate-config.sh parses exactly this shape
+  A: { provider: zai-anthropic, model: glm-5.3-flash, type: planner }
+  B: { provider: zai-anthropic, model: glm-5.3-flash, type: builder }
+  R: { provider: mimo, model: mimo-v2.6-flash, type: reviewer }
+  V: { provider: minimax-anthropic, model: MiniMax-M3.1-Flash, type: verifier }
+independence: R-B, V-B, V-R    # the three-vendor law — hard pairs, validator-enforced
+verification:                  # the verify command plus every metric command V re-runs blind
+  - "<command>"
+ledger: true                   # stamp role + provider + model in every produced doc header
