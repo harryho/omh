@@ -142,7 +142,9 @@ The loop exits when an upgrade begins, and it exits *paid up*:
 
 ## Provenance
 
-Extracted from the FXPA public-repo baseline run of 17–18 Nov 2026: one verify command green
+Extracted from the FXPA public-repo baseline run of 17–18 Nov 2026. Every figure below is
+**Verified** 17–18 Nov 2026 against that run's own recorded output (its verify-report stamp,
+baseline report and ledgers, held in the FXPA repo): one verify command green
 at 65 tests in ~0.3 s; golden masters for 16 catalogue functions plus 5 ported indicators
 against an independent Python oracle at 1e-6 tolerance; a 3,300-bar fixture pinned by SHA-256;
 interval aggregation, coordinate mapping, and thread affinity characterized; a 3-test UI smoke

@@ -13,6 +13,8 @@ Keep this file short and binding. Depth lives in the documents below — read th
 | Shared law: binding rules (two-layer, never-invent, evidence) | [RULES.md](RULES.md) |
 | Shared law: model pairs, validator contract | [MODELS.md](MODELS.md) |
 | rewrite: pipeline, roles, templates, init, example | [harnesses/rewrite/README.md](harnesses/rewrite/README.md) |
+| upgrade: in-place upgrade pipeline, parity census, init, example | [harnesses/upgrade/README.md](harnesses/upgrade/README.md) |
+| modernize: standing baseline between upgrades, ledgers, init, example | [harnesses/modernize/README.md](harnesses/modernize/README.md) |
 | Config validator + family checks | [tools/validate-config.sh](tools/validate-config.sh) |
 | Skill router | [skill/SKILL.md](skill/SKILL.md) |
 | A worked spec → plan → review → test → close set | [harnesses/rewrite/examples/ledgerlite/](harnesses/rewrite/examples/ledgerlite/) |

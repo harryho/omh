@@ -106,7 +106,7 @@ the only place a gate is real.
 with machine and dataset provenance — a benchmark row without its machine is a rumour with a
 decimal point.
 
-Traps, each verified in the provenance run:
+Traps, each **Verified** 17–18 Nov 2026 in the provenance run (that run's traps ledger):
 
 - the benchmark project's **`.csproj` file name must exactly equal its `AssemblyName`** —
   the child-process lookup is case-sensitive even on a case-insensitive file system, and the
