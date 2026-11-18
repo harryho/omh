@@ -40,5 +40,16 @@ for f in MODELS.md harnesses/*/MODELS.md; do
     || bad "family: D5 law line missing or drifted in $f"
 done
 
+# --- validator-contract law: every harness repeats the root's severity matrix verbatim ---
+# (the D5 guard above checks only the pair-schema sentence; this one catches the table itself)
+root_rows=$(sed -n '/^## Validator contract$/,/^## /p' MODELS.md | grep '^|')
+for f in harnesses/*/MODELS.md; do
+  harness_rows=$(sed -n '/^## Validator contract$/,/^## /p' "$f" | grep '^|')
+  if [ "$harness_rows" != "$root_rows" ]; then
+    bad "family: validator contract table drifts from the root's in $f"
+    say "$harness_rows" | diff - <(printf '%s\n' "$root_rows") | sed 's/^/    /'
+  fi
+done
+
 if [ $fail -eq 0 ]; then say "OK: check-family green"; fi
 exit $fail

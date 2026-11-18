@@ -43,6 +43,18 @@ grep -q 'E5' "$R/HARNESS.md" || bad "ac4: HARNESS.md missing E5 (verify mismatch
 grep -q 'E6' "$R/HARNESS.md" || bad "ac4: HARNESS.md missing E6 (scope drift hard stop)"
 grep -q 'Pin quirks, don' "$R/HARNESS.md" || bad "ac4: HARNESS.md missing the pin-don't-fix discipline"
 grep -q '## Handoff to upgrade' "$R/HARNESS.md" || bad "ac4: HARNESS.md missing the upgrade handoff"
+
+# --- law: ROLES.md must include the Intake section, one drifted-checkable row per role ---
+grep -q '## Intake' "$R/ROLES.md" || bad "ac4: ROLES.md missing the Intake section"
+for row in \
+  '| A | the M0 state summary' \
+  '| B | the approved tranche note, task by task |' \
+  '| R pass 1 | HARNESS (ladder + contract)' \
+  '| R pass 2 | the tranche note, the branch diff |' \
+  '| V | the acceptance criteria + the command block' \
+  '| Orchestrator | launches, gates, records'; do
+  grep -qF "$row" "$R/ROLES.md" || bad "ac4: intake row drifted or missing: $row"
+done
 grep -q '## Declared scope' "$R/templates/TEMPLATE-tranche-note.md" || bad "ac4: tranche-note template missing declared scope"
 grep -q '## Pins planned' "$R/templates/TEMPLATE-tranche-note.md" || bad "ac4: tranche-note template missing pins planned"
 grep -q '## Acceptance criteria' "$R/templates/TEMPLATE-tranche-note.md" || bad "ac4: tranche-note template missing acceptance criteria"
